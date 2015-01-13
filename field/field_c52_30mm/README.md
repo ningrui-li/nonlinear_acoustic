@@ -21,7 +21,8 @@ The intensity field was calculated by running `field2dyna.m` from the [FEM tools
 `field2dyna('nodes.dyn', 0.45, 2.6, [0 0 0.03], 2.36, 'c52', 'gaussian')`
 
 - alpha = 0.45 dB/cm/MHz (liver)
-- F/# = 2.8 (using estimated aperture width shown in image below)
+- F/# = 2.8 (using estimated aperture width of 1.08 cm shown in image below)
+![F/# Estimation, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/field/field_c52_30mm/estimate_fnum_c52_30mm.png)
 - focus = 0.03 m
 - excitation frequency = 2.36 MHz
 - transducer = c5-2
