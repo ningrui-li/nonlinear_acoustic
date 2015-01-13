@@ -13,4 +13,4 @@ The `field` folder contains the code used to run the Field II simulations for co
 ## Metrics
 The `metrics` folder contains functions for creating various plots of each intensity field for convenient comparison between Field II and KZK simulation results.
 
-
+ningrui.li@duke.edu
