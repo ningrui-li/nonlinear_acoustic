@@ -18,7 +18,9 @@ python GenMesh.py --xyz -1.0 0 0 1.2 -5.2 0 --numElem 50 60 104
 
 The intensity field was calculated by running `field2dyna.m` from the [FEM tools](https://github.com/Duke-Ultrasound/fem).
 
-`field2dyna('nodes.dyn', 0.45, 2.6, [0 0 0.03], 2.36, 'c52', 'gaussian')`
+`field2dyna('nodes.dyn', 0.45, 2.8, [0 0 0.03], 2.36, 'c52', 'gaussian')`
+
+The parameters used above are:
 
 - alpha = 0.45 dB/cm/MHz (liver)
 - F/# = 2.8 (using estimated aperture width of 1.08 cm shown in image below)
