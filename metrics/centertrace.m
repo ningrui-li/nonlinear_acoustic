@@ -44,7 +44,20 @@ for i = 1:3:length(varargin)
     end
 end
 
-%plot(depth, 
+for i = 1:3:length(varargin)
+    depth = squeeze(varargin{i+1});
+    intensityAlongCenterTrace = varargin{i}(end, 1, :);
+    intensityAlongCenterTrace = squeeze(intensityAlongCenterTrace);
+    plot(depth, intensityAlongCenterTrace)
+    if i == 1
+        hold all
+    end
+end
+hold off
+title(PlotTitle)
+xlabel('Depth (cm)')
+ylabel('Intensity')
+
 
 end
 
