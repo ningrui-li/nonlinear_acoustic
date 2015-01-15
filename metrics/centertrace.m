@@ -86,10 +86,5 @@ for i = 1:intensityPlotCount
 end
 eval(sprintf('legend(%s 0)', legendTitles))
 
+eval(sprintf('print -dpng %s', OutputName'))
 end
-
-
-
-
-
-
