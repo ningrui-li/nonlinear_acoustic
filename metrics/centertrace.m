@@ -44,20 +44,47 @@ for i = 1:3:length(varargin)
     end
 end
 
-for i = 1:3:length(varargin)
-    depth = squeeze(varargin{i+1});
-    intensityAlongCenterTrace = varargin{i}(end, 1, :);
+% cell array of various line style and color options for plotting
+plottingLineStyles = {'-', '--', '-.', ':'};
+plottingLineColors = {'b', 'k', 'r', 'g', 'c', 'm'};
+
+% number of intensity plot lines in total
+intensityPlotCount = length(varargin)/3;
+
+for i = 1:intensityPlotCount
+    depth = squeeze(varargin{3*(i-1)+2});
+    intensityAlongCenterTrace = varargin{3*(i-1)+1}(end, 1, :);
     intensityAlongCenterTrace = squeeze(intensityAlongCenterTrace);
-    plot(depth, intensityAlongCenterTrace)
+    % The following piece of weird arithmetric logic is because in order to
+    % get indices in terms of MATLAB conventions, we need to subtract 1 from
+    % our number, perform the mod operation, then re-add the 1.
+    
+    % For example, working in mod 3, this allows us to have something like:
+    % 1->1, 2->2, 3->3, 4->1, 5->2, 6->3, 7->1, ...
+    lineStyleIndex = mod(i-1, length(plottingLineStyles)) + 1;
+    lineColorIndex = mod(i-1, length(plottingLineColors)) + 1;
+    lineStyle = plottingLineStyles{lineStyleIndex};
+    lineColor = plottingLineColors{lineColorIndex};
+    plot(depth, intensityAlongCenterTrace, char([lineColor lineStyle]))
+    
     if i == 1
-        hold all
+        hold on
     end
 end
 hold off
+
 title(PlotTitle)
 xlabel('Depth (cm)')
 ylabel('Intensity')
-
+% Axis settings assume depth values are extremely similar between plotted 
+% intensity data sets. Also assumes intensity values are correctly normalized
+% to be between 0 and 1.
+axis([min(varargin{2}) max(varargin{2}) 0 1])
+legendTitles = '';
+for i = 1:intensityPlotCount
+    legendTitles = [legendTitles '''' varargin{3*(i-1)+3}  ''', '];
+end
+eval(sprintf('legend(%s 0)', legendTitles))
 
 end
 

@@ -1,3 +1,6 @@
+# Data files
 *.dyn
 *.mat
+
+# Temporary files
 *~

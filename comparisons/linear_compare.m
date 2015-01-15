@@ -28,9 +28,4 @@ centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - 
             intensity_field_30mm, intensity_field_30mm_depth, 'Field II, C5-2, 30 mm Focus',...
             intensity_kzk_30mm, intensity_kzk_30mm_depth, 'KZK, C5-2, 30 mm Focus')
 
-% centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - C5-2, 30 mm Focus',...
-%             intensity_field_30mm, intensity_field_30mm_depth, 'Field II, C5-2, 30 mm Focus')
 
-
-% centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - C5-2, 30 mm Focus',...
-%             intensity_kzk_30mm, intensity_kzk_30mm_depth, 'KZK, C5-2, 30 mm Focus')
