@@ -56,10 +56,10 @@ for i = 1:intensityPlotCount
     intensityAlongCenterTrace = varargin{3*(i-1)+1}(end, 1, :);
     intensityAlongCenterTrace = squeeze(intensityAlongCenterTrace);
     intensityAlongCenterTrace = intensityAlongCenterTrace./max(intensityAlongCenterTrace);
+    
     % The following piece of weird arithmetric logic is because in order to
     % get indices in terms of MATLAB conventions, we need to subtract 1 from
     % our number, perform the mod operation, then re-add the 1.
-    
     % For example, working in mod 3, this allows us to have something like:
     % 1->1, 2->2, 3->3, 4->1, 5->2, 6->3, 7->1, ...
     lineStyleIndex = mod(i-1, length(plottingLineStyles)) + 1;
@@ -72,6 +72,7 @@ for i = 1:intensityPlotCount
         hold on
     end
 end
+semilogy(varargin{2}, .5*ones(size(varargin{2})), 'k:')
 hold off
 
 title(PlotTitle)
