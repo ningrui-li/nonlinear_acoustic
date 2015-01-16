@@ -55,6 +55,7 @@ for i = 1:intensityPlotCount
     depth = squeeze(varargin{3*(i-1)+2});
     intensityAlongCenterTrace = varargin{3*(i-1)+1}(end, 1, :);
     intensityAlongCenterTrace = squeeze(intensityAlongCenterTrace);
+    intensityAlongCenterTrace = intensityAlongCenterTrace./max(intensityAlongCenterTrace);
     % The following piece of weird arithmetric logic is because in order to
     % get indices in terms of MATLAB conventions, we need to subtract 1 from
     % our number, perform the mod operation, then re-add the 1.
@@ -75,7 +76,7 @@ hold off
 
 title(PlotTitle)
 xlabel('Depth (cm)')
-ylabel('Intensity')
+ylabel('Normalized Intensity')
 % Axis settings assume depth values are extremely similar between plotted 
 % intensity data sets. Also assumes intensity values are correctly normalized
 % to be between 0 and 1.
