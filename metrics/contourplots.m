@@ -26,15 +26,20 @@ function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, Pl
 % 3, [51 61 71]);
 
 %% Depth plane plots
+% looking to plot contour levels at 6 dB, 12 dB, and 18 dB
+dbLevels = [-6 -12 -18];
+% conversion from dB to linear 
+dbLevels = 10.^(dbLevels/20);
 subplotCount = 1;
 if PlotPlane == 3
     for plane = planes
         subplot(length(planes), 1, subplotCount)
         intensity_plane = squeeze(intensity(:, :, plane));
-        imagesc(lat, ele, intensity_plane)
         
-        subplotCount = subplotCount + 1;
+        contour(lat, ele, intensity_plane, dbLevels)
         title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
+        axis([0 0.3 -.5 0])
+        subplotCount = subplotCount + 1;
     end
 end
 
