@@ -31,8 +31,13 @@ centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - 
 
 % contour plot in lateral-elevation plane at various depths
 figure(3)
-contour(flip(lat(1:61)), flip(ele(51:end)), squeeze(intensity_kzk_30mm(:, :, 61)))
-axis([-2 0 0 6])
+ele = -1:0.02:0;
+lat = 0:0.02:1.2;
+depth = -5.2:0.05:0;
+contourplots('kzk_30mm_depth.png', 'KZK, 30 mm Focus - Depth Plane',...
+              intensity_kzk_30mm, ele, lat, depth, 3, [51 61 71]);
+
+%axis([-2 0 0 6])
 
 
 
