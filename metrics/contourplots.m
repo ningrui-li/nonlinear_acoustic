@@ -29,16 +29,22 @@ function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, Pl
 % looking to plot contour levels at 6 dB, 12 dB, and 18 dB
 dbLevels = [-6 -12 -18];
 % conversion from dB to linear 
-dbLevels = 10.^(dbLevels/20);
+%dbLevels = 10.^(dbLevels/20);
 subplotCount = 1;
 if PlotPlane == 3
     for plane = planes
         subplot(length(planes), 1, subplotCount)
         intensity_plane = squeeze(intensity(:, :, plane));
-        
-        contour(lat, ele, intensity_plane, dbLevels)
+        intensity_plane = db(intensity_plane);
+        [C, h] = contour(lat, ele, intensity_plane, dbLevels);
+        clabel(C, h);
         title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
-        axis([0 0.3 -.5 0])
+        % need to replace this with some way of calculating axis
+        % bounds using -18 dB contour line locations
+        xlabel('Lateral Position (cm)')
+        ylabel('Elevational Position (cm)')
+        axis([0 0.15 -.5 0])
+        
         subplotCount = subplotCount + 1;
     end
 end
