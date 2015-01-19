@@ -26,7 +26,7 @@ function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, Pl
 % 3, [51 61 71]);
 
 %% Depth plane plots
-% looking to plot contour levels at 6 dB, 12 dB, and 18 dB
+% looking to plot contour levels at -6 dB, -12 dB, and -18 dB
 dbLevels = [-6 -12 -18];
 % conversion from dB to linear 
 %dbLevels = 10.^(dbLevels/20);

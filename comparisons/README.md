@@ -1,0 +1,16 @@
+Field II and KZK Comparison Scripts
+===================================
+
+These scripts use the functions in metrics to compare the various Field II and KZK simulations.
+
+#### Linear Simulation Comparison
+`linear_compare.m` is a MATLAB script that compares the results of the Field II simulation with the results of the KZK simulation run in linear mode (β = 0). The results of the Field II simulation can be obtained by running the scripts in the `field` folder. They are also located in `/luscinia/nl91/nonlinear_acoustic/field/field_c52_30mm/dyna-I-f2.36-F2.8-FD0.030-a0.45.mat` for the 30 mm focus simulation and `/luscinia/nl91/nonlinear_acoustic/field/field_c52_70mm/dyna-I-f2.36-F2.8-FD0.070-a0.45.mat` for the 70 mm simulation. The results of the linear KZK simulation can be found at `/luscinia/nl91/scratch/c52/focus30mm/quarter_symmetric/c52_intensity_vals_30_qsymm_intensity.mat` for the 30 mm focus simulation and `/luscinia/nl91/scratch/c52/focus70mm/quarter_symmetric/c52_70mm_qsymmetric_intensity_vals_linear.mat` for the 70 mm focus simulation.
+
+All intensity values for each simulation were normalized by dividing by the maximum intensity in each field. The KZK intensity field results were quartered in order to be more comparable to the Field II simulations, which were run with the quarter symmetry assumption.
+
+### Maximum Intensity
+The maximum intensity for the Field II sim occurred at 0.00 cm in elevation position, 0.00 cm in lateral position, and 3.20 cm in depth position.
+
+The maximum intensity for the linear KZK sim occured at -0.14 cm in elevation position, 0.00 cm in lateral position, and 2.30 cm in depth position.
+
+
