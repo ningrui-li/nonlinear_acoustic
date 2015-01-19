@@ -28,39 +28,56 @@ function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, Pl
 %% Depth plane plots
 % looking to plot contour levels at -6 dB, -12 dB, and -18 dB
 dbLevels = [-6 -12 -18];
-% conversion from dB to linear 
-%dbLevels = 10.^(dbLevels/20);
+
 subplotCount = 1;
 subplotHandles = zeros(1, length(planes));
+
 if PlotPlane == 1
     for plane = planes
-        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount)
-        intensity_plane = squeeze(intensity(:, :, plane));
+        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount);
+        intensity_plane = squeeze(intensity(plane, :, :));
+        intensity_plane = intensity_plane';
         intensity_plane = db(intensity_plane);
-        [C, h] = contour(lat, ele, intensity_plane, dbLevels);
+
+        [C, h] = contour(lat, depth, intensity_plane, dbLevels);
+        
         clabel(C, h);
-        title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
-        % need to replace this with some way of calculating axis
-        % bounds using -18 dB contour line locations
+        title(sprintf('%s (%.2f cm)', PlotTitle, ele(plane)))
+        % consider figuring out some way to automatically set axes limits
+        % based on outer contour line boundaries
         xlabel('Lateral Position (cm)')
-        ylabel('Elevational Position (cm)')
+        
+        ylabel('Depth Position (cm)')
+        subplotCount = subplotCount + 1;
+    end    
+elseif PlotPlane == 2
+    for plane = planes
+        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount);
+        intensity_plane = squeeze(intensity(:, plane, :));
+        intensity_plane = intensity_plane';
+        intensity_plane = db(intensity_plane);
+        
+        [C, h] = contour(ele, depth, intensity_plane, dbLevels);
+        
+        clabel(C, h);
+        title(sprintf('%s (%.2f cm)', PlotTitle, lat(plane)))
+        xlabel('Elevational Position (cm)')
+        ylabel('Depth Position (cm)')
         
         subplotCount = subplotCount + 1;
-    end
-end    
-if PlotPlane == 3
+    end 
+else
     for plane = planes
-        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount)
+        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount);
         intensity_plane = squeeze(intensity(:, :, plane));
         intensity_plane = db(intensity_plane);
+        
         [C, h] = contour(lat, ele, intensity_plane, dbLevels);
+        
         clabel(C, h);
         title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
-        % need to replace this with some way of calculating axis
-        % bounds using -18 dB contour line locations
         xlabel('Lateral Position (cm)')
-        ylabel('Elevational Position (cm)')
-        %axis([0 0.15 -.5 0])
+        ylabel('Elevational Position (cm)')        
         
         subplotCount = subplotCount + 1;
     end
@@ -68,6 +85,11 @@ end
 % link axes of all subplots. Changing axis limits of one subplot will also
 % change the axis limits of all other subplots.
 linkaxes(subplotHandles, 'xy')
+% This is needed because axis limits are currently set in the comparisons
+% scripts, rather than being hard-coded into this function.
+
+% issue here b/c plot is saved to image before the axis limit corrections
+% are made.
+eval(sprintf('print -dpng %s', OutputName'))
 
 end
-
