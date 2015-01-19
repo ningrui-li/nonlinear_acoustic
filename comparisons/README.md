@@ -13,4 +13,10 @@ The maximum intensity for the Field II sim occurred at 0.00 cm in elevation posi
 
 The maximum intensity for the linear KZK sim occured at -0.14 cm in elevation position, 0.00 cm in lateral position, and 2.30 cm in depth position.
 
+### Center Trace Plot
+The center trace plot for the two sims can be seen below.
+
+![Center Trace Plot, Linear KZK and Field II Sims, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/field_kzk_centertrace_c52_30mm.png)
+
+The intensity was plotted with respect to depth for each sim along the 0 cm lateral position and 0 cm elevational position axis. The intensity was then re-normalized along this axis.
 
