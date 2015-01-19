@@ -68,7 +68,7 @@ centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - 
 figure(3)
 contourplots('kzk_30mm_depth.png', 'KZK, 30 mm Focus - Depth Plane',...
               intensity_kzk_30mm, ele, lat, depth, 3, [51 61 71]);
-
+axis([0 0.15 -.5 0])
 %axis([-2 0 0 6])
 
 

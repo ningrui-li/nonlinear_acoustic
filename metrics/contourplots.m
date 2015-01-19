@@ -31,9 +31,10 @@ dbLevels = [-6 -12 -18];
 % conversion from dB to linear 
 %dbLevels = 10.^(dbLevels/20);
 subplotCount = 1;
-if PlotPlane == 3
+subplotHandles = zeros(1, length(planes));
+if PlotPlane == 1
     for plane = planes
-        subplot(length(planes), 1, subplotCount)
+        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount)
         intensity_plane = squeeze(intensity(:, :, plane));
         intensity_plane = db(intensity_plane);
         [C, h] = contour(lat, ele, intensity_plane, dbLevels);
@@ -43,11 +44,30 @@ if PlotPlane == 3
         % bounds using -18 dB contour line locations
         xlabel('Lateral Position (cm)')
         ylabel('Elevational Position (cm)')
-        axis([0 0.15 -.5 0])
+        
+        subplotCount = subplotCount + 1;
+    end
+end    
+if PlotPlane == 3
+    for plane = planes
+        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount)
+        intensity_plane = squeeze(intensity(:, :, plane));
+        intensity_plane = db(intensity_plane);
+        [C, h] = contour(lat, ele, intensity_plane, dbLevels);
+        clabel(C, h);
+        title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
+        % need to replace this with some way of calculating axis
+        % bounds using -18 dB contour line locations
+        xlabel('Lateral Position (cm)')
+        ylabel('Elevational Position (cm)')
+        %axis([0 0.15 -.5 0])
         
         subplotCount = subplotCount + 1;
     end
 end
+% link axes of all subplots. Changing axis limits of one subplot will also
+% change the axis limits of all other subplots.
+linkaxes(subplotHandles, 'xy')
 
 end
 
