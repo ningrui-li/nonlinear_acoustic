@@ -17,12 +17,11 @@ intensity_field_30mm = intensity_field_30mm ./ max(intensity_field_30mm(:));
 intensity_field_30mm_depth = field_depth;
 
 % Getting location of max intensity
-[maxEle, maxLat, maxDepth] = ind2sub(size(intensity_field_30mm),...
-                               find(intensity_field_30mm == max(intensity_field_30mm(:))));
-                           
+[maxEle, maxLat, maxDepth] = intensitypeak(intensity_field_30mm, field_ele, ...
+                                           field_lat, field_depth);
 fprintf(['The maximum intensity occurs at %.2f cm in elevation position, '...
          '%.2f cm in lateral position, and %.2f cm in depth position.\n'],...
-         field_ele(maxEle), field_lat(maxLat), field_depth(maxDepth))         
+         maxEle, maxLat, maxDepth)         
 fprintf('\n')
 
 % KZK
@@ -44,14 +43,13 @@ intensity_kzk_30mm = intensity_kzk_30mm ./ max(intensity_kzk_30mm(:));
 intensity_kzk_30mm_depth = kzk_depth;
 
 % Calculating location of max intensity
-
-[maxEle, maxLat, maxDepth] = ind2sub(size(intensity_kzk_30mm),...
-                               find(intensity_kzk_30mm == max(intensity_kzk_30mm(:))));
-                           
+[maxEle, maxLat, maxDepth] = intensitypeak(intensity_kzk_30mm, kzk_ele, ...
+                                           kzk_lat, kzk_depth);
 fprintf(['The maximum intensity occurs at %.2f cm in elevation position, '...
          '%.2f cm in lateral position, and %.2f cm in depth position.\n'],...
-         kzk_ele(maxEle), kzk_lat(maxLat), kzk_depth(maxDepth))
+         maxEle, maxLat, maxDepth)
 fprintf('\n')     
+
 figure(1)
 subplot(2, 1, 1)
 imagesc(squeeze(intensity_field_30mm(end, :, :))')
