@@ -17,7 +17,8 @@ function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, Pl
 % For example, if PlotPlane is 3 and planes = [51 61 71], then depth planes
 % will be plotted at depths of depth(51), depth(61), and depth(71).
 % axisLimits - optional input vector specifying axis limits for the plots.
-% This vector should be in the form [xmin xmax ymin ymax].
+% This vector should be in the form [xmin xmax ymin ymax]. If not given, 
+% MATLAB Will automatically choose axis limits.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OUTPUT:
 % PNG file depicting plot is saved to CWD with file name OutputName.
@@ -34,6 +35,10 @@ dbLevels = [-6 -12 -18];
 subplotCount = 1;
 subplotHandles = zeros(1, length(planes));
 
+% variable with a reasonably large number so that each contour line only
+% gets one label associated with it. This is to reduce the amount of labeling
+% on the contour plot, making it easier to read.
+reallyLargeContourLabelSpacing = 1e7;
 if PlotPlane == 1
     for plane = planes
         subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount);
@@ -43,7 +48,7 @@ if PlotPlane == 1
 
         [C, h] = contour(lat, depth, intensity_plane, dbLevels);
         
-        clabel(C, h);
+        clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
         title(sprintf('%s (%.2f cm)', PlotTitle, ele(plane)))
         % consider figuring out some way to automatically set axes limits
         % based on outer contour line boundaries
@@ -61,7 +66,7 @@ elseif PlotPlane == 2
         
         [C, h] = contour(ele, depth, intensity_plane, dbLevels);
         
-        clabel(C, h);
+        clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
         title(sprintf('%s (%.2f cm)', PlotTitle, lat(plane)))
         xlabel('Elevational Position (cm)')
         ylabel('Depth Position (cm)')
@@ -76,7 +81,7 @@ else
         
         [C, h] = contour(lat, ele, intensity_plane, dbLevels);
         
-        clabel(C, h);
+        clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
         title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
         xlabel('Lateral Position (cm)')
         ylabel('Elevational Position (cm)')        
