@@ -6,3 +6,5 @@ These MATLAB functions are used to generate various plots from intensity field m
  * `centertrace.m` - This function is used to create a plot of depth vs. normalized intensity down the center of the intensity field's lateral-elevation planes. A PNG image of the plot will be created in the current working directory.
 
  * `contourplots.m` - This function is used to create contour plots of intensity in different planes. Contour lines are drawn at -6 dB, -12 dB, and -18 dB cutoffs. A PNG image of the plots will be created in the current working directory.
+
+ * `intensitypeak.m` - This function is used to find the 3D coordinates of the location of max intensity in a given intensity field. The output is the elevational, lateral, and depth coordinates of the max intensity location.
