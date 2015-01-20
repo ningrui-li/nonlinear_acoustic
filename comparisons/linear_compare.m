@@ -65,22 +65,18 @@ centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - 
             intensity_kzk_30mm, intensity_kzk_30mm_depth, 'KZK, C5-2, 30 mm Focus')
 
 % kzk contour plot in elevation-lateral plane at various depths
-fig3 = figure(3);
+figure(3);
 contourplots('kzk_30mm_depth.png', 'KZK, 30 mm Focus - Depth Plane',...
-              intensity_kzk_30mm, ele, lat, depth, 3, [51 61 71]);
-ax = fig3.CurrentAxes;
-axis(ax, [0 0.15 -.5 0])
+              intensity_kzk_30mm, ele, lat, depth, 3, [51 61 71], [0 0.15 -.5 0]);
+
 
 % contour plot in depth-elevation plane at various lateral positions
-fig4 = figure(4);
+figure(4);
 contourplots('kzk_30mm_lateral.png', 'KZK, 30 mm Focus - Lateral Plane', ...
-             intensity_kzk_30mm, ele, lat, depth, 2, [1 5 9]);
-ax = fig4.CurrentAxes;
-axis(ax, [-.51 0 0 5.2]);
+             intensity_kzk_30mm, ele, lat, depth, 2, [1 5 9], [-.51 0 0 5.2]);
+
 
 % contour plot in depth-lateral plane at various elevational positions
-fig5 = figure(5);
+figure(5);
 contourplots('kzk_30mm_elevational.png', 'KZK, 30 mm Focus - Elevational Plane', ...
-             intensity_kzk_30mm, ele, lat, depth, 1, [43 47 51]);         
-ax = fig5.CurrentAxes;
-axis(ax, [0 .35 0 5.2]);
+             intensity_kzk_30mm, ele, lat, depth, 1, [43 47 51], [0 .35 0 5.2]);         

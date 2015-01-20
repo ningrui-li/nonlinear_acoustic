@@ -1,4 +1,4 @@
-function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, PlotPlane, planes)
+function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, PlotPlane, planes, axisLimits)
 % function [] = contourplots(OutputName, PlotTitle, IntensityPlane, RowValues, ColValues)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % INPUT:
@@ -16,6 +16,8 @@ function [] = contourplots(OutputName, PlotTitle, intensity, ele, lat, depth, Pl
 % planes - specifies which planes and how many planes should be plotted.
 % For example, if PlotPlane is 3 and planes = [51 61 71], then depth planes
 % will be plotted at depths of depth(51), depth(61), and depth(71).
+% axisLimits - optional input vector specifying axis limits for the plots.
+% This vector should be in the form [xmin xmax ymin ymax].
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OUTPUT:
 % PNG file depicting plot is saved to CWD with file name OutputName.
@@ -88,8 +90,10 @@ linkaxes(subplotHandles, 'xy')
 % This is needed because axis limits are currently set in the comparisons
 % scripts, rather than being hard-coded into this function.
 
-% issue here b/c plot is saved to image before the axis limit corrections
-% are made.
+if nargin > 8
+    axis(axisLimits)
+end
+
 eval(sprintf('print -dpng %s', OutputName'))
 
 end
