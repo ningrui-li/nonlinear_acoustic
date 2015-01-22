@@ -63,37 +63,50 @@ centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - 
             intensity_kzk_30mm, intensity_kzk_30mm_depth, 'KZK, C5-2, 30 mm Focus')
 %% KZK contour plots
 % contour plot in elevation-lateral plane at various depths
+% Depth planes in 2.3 cm, 2.75 cm, and 3.2 cm planes. These planes chosen
+% because KZK intensity field is maximum in 2.3 cm plane and Field II
+% intensity field is max in 3.2 cm plane.
 figure(3);
 contourplots('kzk_30mm_depth.png', 'KZK, 30 mm Focus - Depth Plane',...
-              intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 3, [51 61 71],...
-              [0 0.15 -.5 0]);
-
+              intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 3,...
+              [47 56 65], [0 0.15 -.5 0]);
 
 % contour plot in depth-elevation plane at various lateral positions
+% Lateral planes are 0.00 cm, 0.08 cm, and 0.16 cm planes. 0.00 cm plane
+% was chosen because both KZK and Field II intensity fields were maximum at
+% 0.00 cm lateral position.
 figure(4);
 contourplots('kzk_30mm_lateral.png', 'KZK, 30 mm Focus - Lateral Plane',...
-             intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 2, [1 5 9],...
-             [-.51 0 0 5.2]);
-
+             intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 2,...
+             [1 5 9], [-.51 0 0 5.2]);
 
 % contour plot in depth-lateral plane at various elevational positions
+% Elevational planes are -0.14 cm, -0.06 cm, and 0.00 cm planes. These 
+% planes were chosen because KZK intensity field is maximum in -0.14 cm 
+% plane while the Field II intensity field is max in 0.00 cm plane.
 figure(5);
 contourplots('kzk_30mm_elevational.png', 'KZK, 30 mm Focus - Elevational Plane',...
-             intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 1, [43 47 51],...
-             [0 .35 0 5.2]);  
+             intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 1,...
+             [44 48 51], [0 .35 0 5.2]);  
 
 %% Field II contour plots
+% contour plot in elevation-lateral plane at various depths
+% Depth planes in 2.3 cm, 2.75 cm, and 3.2 cm planes.
 figure(6);
 contourplots('field2_30mm_depth.png', 'Field II, 30 mm Focus - Depth Plane',...
              intensity_field_30mm, field_ele, field_lat, field_depth, 3,...
-             [51 61 71], [0 0.15 -.5 0])
+             [47 56 65], [0 0.15 -.5 0])
 
+% contour plot in depth-elevation plane at various lateral positions
+% Lateral planes are 0.00 cm, 0.08 cm, and 0.16 cm planes.
 figure(7);
 contourplots('field2_30mm_lateral.png', 'Field II, 30 mm Focus - Lateral Plane',...
              intensity_field_30mm, field_ele, field_lat, field_depth, 2,...
              [1 5 9], [-.51 0 0 5.2])
-         
+
+% contour plot in depth-lateral plane at various elevational positions         
+% Elevational planes are -0.14 cm, -0.06 cm, and 0.00 cm planes.
 figure(8);
 contourplots('field2_30mm_elevational.png', 'Field II, 30 mm Focus - Elevational Plane',...
              intensity_field_30mm, field_ele, field_lat, field_depth, 1,...
-             [43 47 51], [0 0.35 0 5.2])
+             [44 48 51], [0 0.35 0 5.2])
