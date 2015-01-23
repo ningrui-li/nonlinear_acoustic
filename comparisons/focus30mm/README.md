@@ -20,3 +20,18 @@ The center trace plot for the two sims can be seen below.
 
 The intensity was plotted with respect to depth for each sim along the 0 cm lateral position and 0 cm elevational position axis. The intensity was then re-normalized along this axis.
 
+### Contour Planes
+The contour plane plots for the Field II and KZK sims can be found below in each of the three planes (elevational, lateral, and depth).
+
+##### Elevational Planes
+Contour plot slices at elevational positions of -0.14 cm, -0.06 cm, and 0.00 cm can be found below. These planes were chosen because the KZK sim had maximum normalized intensity at an elevational position of -0.14 cm, while the Field II sim had maximum normalized intensity at an elevational position of 0.00 cm.
+
+ * Field II - Elevational Plane Contour Plots
+
+![Elevational Plane Contour Plots, Field II Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/field2_30mm_depth.png)
+
+ * KZK - Elevational Plane Contour Plots
+
+![Elevational Plane Contour Plots, Linear KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/kzk_30mm_depth.png)
+
+
