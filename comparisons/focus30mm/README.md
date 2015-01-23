@@ -28,10 +28,30 @@ Contour plot slices at elevational positions of -0.14 cm, -0.06 cm, and 0.00 cm 
 
  * Field II - Elevational Plane Contour Plots
 
-![Elevational Plane Contour Plots, Field II Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/field2_30mm_depth.png)
+![Elevational Plane Contour Plots, Field II Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/field2_30mm_elevational.png)
 
  * KZK - Elevational Plane Contour Plots
 
-![Elevational Plane Contour Plots, Linear KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/kzk_30mm_depth.png)
+![Elevational Plane Contour Plots, Linear KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/kzk_30mm_elevational.png)
 
+##### Lateral Planes
+Contour plot slices at lateral positions of 0.00 cm, 0.08 cm, and 0.16 cm can be found below. These planes were chosen to be around 0.00 cm because both the Field II and KZK sims had maximum normalized intensities at 0.00 cm lateral position.
 
+ * Field II - Lateral Plane Contour Plots
+
+![Lateral Plane Contour Plots, Field II Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/field2_30mm_lateral.png)
+
+ * KZK - Lateral Plane Contour Plots
+
+![Lateral Plane Contour Plots, Linear KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/kzk_30mm_lateral.png)
+
+##### Depth Planes
+Contour plot slices at depth positions of 2.30 cm, 2.75 cm, and 3.20 cm can be found below. These planes were chosen because the KZK sim had maximum normalized intensity at a depth of 2.30 cm, while the Field II sim had maximum normalized intensity at a depth of 3.20 cm.
+
+ * Field II - Depth Plane Contour Plots
+
+![Depth Plane Contour Plots, Field II Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/field2_30mm_depth.png)
+
+ * KZK - Depth Plane Contour Plots
+
+![Depth Plane Contour Plots, Linear KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/kzk_30mm_depth.png)
