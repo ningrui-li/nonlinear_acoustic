@@ -52,9 +52,9 @@ if PlotPlane == 1
         title(sprintf('%s (%.2f cm)', PlotTitle, ele(plane)))
         % consider figuring out some way to automatically set axes limits
         % based on outer contour line boundaries
-        xlabel('Lateral Position (cm)')
+        xlabel('Lateral (cm)')
         
-        ylabel('Depth Position (cm)')
+        ylabel('Depth (cm)')
         subplotCount = subplotCount + 1;
     end    
 elseif PlotPlane == 2
@@ -68,8 +68,8 @@ elseif PlotPlane == 2
         
         clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
         title(sprintf('%s (%.2f cm)', PlotTitle, lat(plane)))
-        xlabel('Elevational Position (cm)')
-        ylabel('Depth Position (cm)')
+        xlabel('Elevational (cm)')
+        ylabel('Depth (cm)')
         
         subplotCount = subplotCount + 1;
     end 
@@ -83,8 +83,8 @@ else
         
         clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
         title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
-        xlabel('Lateral Position (cm)')
-        ylabel('Elevational Position (cm)')        
+        xlabel('Lateral (cm)')
+        ylabel('Elevational (cm)')        
         
         subplotCount = subplotCount + 1;
     end
