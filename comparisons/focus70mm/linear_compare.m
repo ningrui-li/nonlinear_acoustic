@@ -61,3 +61,31 @@ figure(2)
 centertrace('field_kzk_centertrace_c52_70mm.png', 'Field vs. KZK Center Trace - C5-2, 70 mm Focus',...
             intensity_field_70mm, intensity_field_70mm_depth, 'Field II, C5-2, 70 mm Focus',...
             intensity_kzk_70mm, intensity_kzk_70mm_depth, 'KZK, C5-2, 70 mm Focus')
+        
+%% KZK contour plots
+% contour plot in elevation-lateral plane at various depths
+% Depth planes in 3.75 cm, 5.10 cm, and 6.4 cm planes. These planes chosen
+% because KZK intensity field is maximum in 3.75 cm plane and Field II
+% intensity field is max in 6.4 cm plane.
+figure(3);
+contourplots('kzk_70mm_depth.png', 'KZK, 70 mm Focus - Depth Plane',...
+              intensity_kzk_70mm, kzk_ele, kzk_lat, kzk_depth, 3,...
+              [76 103 129], [0 0.45 -.3 0]);
+
+% contour plot in depth-elevation plane at various lateral positions
+% Lateral planes are 0.00 cm, 0.06 cm, and 0.14 cm planes. These planes chosen
+% because KZK intensity field is maximum in 0.00 cm plane and Field II
+% intensity field is max in 0.14 cm plane.
+figure(4);
+contourplots('kzk_70mm_lateral.png', 'KZK, 70 mm Focus - Lateral Plane',...
+             intensity_kzk_70mm, kzk_ele, kzk_lat, kzk_depth, 2,...
+             [1 4 8], [-.3 0 3 9]);
+
+% contour plot in depth-lateral plane at various elevational positions
+% Elevational planes are -0.14 cm, -0.06 cm, and 0.00 cm planes. These 
+% planes were chosen because both Field II andKZK intensity fields are
+% maximum in 0.00 cm plane.
+figure(5);
+contourplots('kzk_70mm_elevational.png', 'KZK, 70 mm Focus - Elevational Plane',...
+             intensity_kzk_70mm, kzk_ele, kzk_lat, kzk_depth, 1,...
+             [53 57 61], [0 .5 3 9]);  
