@@ -65,7 +65,7 @@ centertrace('field_kzk_centertrace_c52_70mm.png', 'Field vs. KZK Center Trace - 
 %% KZK contour plots
 % contour plot in elevation-lateral plane at various depths
 % Depth planes in 3.75 cm, 5.10 cm, and 6.40 cm planes. These planes chosen
-% because KZK intensity field is maximum in 3.75 cm plane and Field II
+% because Field II intensity field is maximum in 3.75 cm plane and KZK
 % intensity field is max in 6.40 cm plane.
 figure(3);
 contourplots('kzk_70mm_depth.png', 'KZK, 70 mm Focus - Depth Plane',...
