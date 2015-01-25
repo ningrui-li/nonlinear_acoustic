@@ -49,3 +49,15 @@ fprintf(['The maximum intensity occurs at %.2f cm in elevation position, '...
          '%.2f cm in lateral position, and %.2f cm in depth position.\n'],...
          maxEle, maxLat, maxDepth)
 fprintf('\n')     
+
+figure(1)
+subplot(2, 1, 1)
+imagesc(squeeze(intensity_field_70mm(end, :, :))')
+subplot(2, 1, 2)
+imagesc(squeeze(intensity_kzk_70mm(end, :, :))')
+
+%% center trace plot
+figure(2)
+centertrace('field_kzk_centertrace_c52_70mm.png', 'Field vs. KZK Center Trace - C5-2, 70 mm Focus',...
+            intensity_field_70mm, intensity_field_70mm_depth, 'Field II, C5-2, 70 mm Focus',...
+            intensity_kzk_70mm, intensity_kzk_70mm_depth, 'KZK, C5-2, 70 mm Focus')
