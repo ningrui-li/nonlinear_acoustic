@@ -24,21 +24,6 @@ The intensity was plotted with respect to depth for each sim along the 0 cm late
 The contour plane plots for the Field II and KZK sims can be found below in each of the three planes (elevational, lateral, and depth).
 
 ##### Elevational Planes
-Contour plot slices at elevational positions of -0.14 cm, -0.06 cm, and 0.00 cm can be found below. These planes were chosen because the KZK sim had maximum normalized intensity at an elevational position of -0.14 cm, while the Field II sim had maximum normalized intensity at an elevational position of 0.00 cm.
-
- * Field II - Elevational Plane Contour Plots
-
-![Elevational Plane Contour Plots, Field II Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/field2_30mm_elevational.png)
-
- * KZK - Elevational Plane Contour Plots
-
-![Elevational Plane Contour Plots, Linear KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/kzk_30mm_elevational.png)
-
-##### Lateral Planes
-Contour plot slices at lateral positions of 0.00 cm, 0.06 cm, and 0.14 cm can be found below. These planes were chosen to be around 0.00 cm because both the Field II and KZK sims had maximum normalized intensities at 0.00 cm lateral position.### Contour Planes
-The contour plane plots for the Field II and KZK sims can be found below in each of the three planes (elevational, lateral, and depth).
-
-##### Elevational Planes
 Contour plot slices at elevational positions of -0.14 cm, -0.06 cm, and 0.00 cm can be found below. These planes were chosen to be around 0.00 cm because both the Field II and KZK sims had maximum normalized intensities at 0.00 cm lateral position.
 
  * Field II - Elevational Plane Contour Plots
