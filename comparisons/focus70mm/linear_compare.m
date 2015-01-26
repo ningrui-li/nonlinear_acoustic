@@ -63,6 +63,10 @@ centertrace('field_kzk_centertrace_c52_70mm.png', 'Field vs. KZK Center Trace - 
             intensity_kzk_70mm, intensity_kzk_70mm_depth, 'KZK, C5-2, 70 mm Focus')
         
 %% KZK contour plots
+% 10 is the ASCII value for a newline. used to break subplot title string
+% into multiple lines.
+nln = 10;
+
 % contour plot in elevation-lateral plane at various depths
 % Depth planes in 3.75 cm, 5.10 cm, and 6.40 cm planes. These planes chosen
 % because Field II intensity field is maximum in 3.75 cm plane and KZK
