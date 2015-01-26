@@ -41,7 +41,7 @@ subplotHandles = zeros(1, length(planes));
 reallyLargeContourLabelSpacing = 1e7;
 if PlotPlane == 1
     for plane = planes
-        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount);
+        subplotHandles(subplotCount) = subplot(1, length(planes), subplotCount);
         intensity_plane = squeeze(intensity(plane, :, :));
         intensity_plane = intensity_plane';
         intensity_plane = db(intensity_plane);
@@ -49,7 +49,7 @@ if PlotPlane == 1
         [C, h] = contour(lat, depth, intensity_plane, dbLevels);
         
         clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
-        title(sprintf('%s (%.2f cm)', PlotTitle, ele(plane)))
+        title(sprintf('%s (%.2f cm)', PlotTitle, ele(plane)), 'FontSize', 7)
         % consider figuring out some way to automatically set axes limits
         % based on outer contour line boundaries
         xlabel('Lateral (cm)', 'FontSize', 8)
@@ -59,7 +59,7 @@ if PlotPlane == 1
     end    
 elseif PlotPlane == 2
     for plane = planes
-        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount);
+        subplotHandles(subplotCount) = subplot(1, length(planes), subplotCount);
         intensity_plane = squeeze(intensity(:, plane, :));
         intensity_plane = intensity_plane';
         intensity_plane = db(intensity_plane);
@@ -67,7 +67,7 @@ elseif PlotPlane == 2
         [C, h] = contour(ele, depth, intensity_plane, dbLevels);
         
         clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
-        title(sprintf('%s (%.2f cm)', PlotTitle, lat(plane)))
+        title(sprintf('%s (%.2f cm)', PlotTitle, lat(plane)), 'FontSize', 7)
         xlabel('Elevation (cm)', 'FontSize', 8)
         ylabel('Depth (cm)', 'FontSize', 8)
         
@@ -75,14 +75,14 @@ elseif PlotPlane == 2
     end 
 else
     for plane = planes
-        subplotHandles(subplotCount) = subplot(length(planes), 1, subplotCount);
+        subplotHandles(subplotCount) = subplot(1, length(planes), subplotCount);
         intensity_plane = squeeze(intensity(:, :, plane));
         intensity_plane = db(intensity_plane);
         
         [C, h] = contour(lat, ele, intensity_plane, dbLevels);
         
         clabel(C, h, 'LabelSpacing', reallyLargeContourLabelSpacing);
-        title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)))
+        title(sprintf('%s (%.2f cm)', PlotTitle, depth(plane)), 'FontSize', 7)
         xlabel('Lateral (cm)', 'FontSize', 8)
         ylabel('Elevation (cm)', 'FontSize', 8)        
         
