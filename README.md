@@ -6,8 +6,10 @@ There are KZK simulation results for focal depths of 30 mm and 70 mm. For each f
 
 The KZK intensity fields generated from the quarter symmetric inputs will be the ones compared with the intensity fields generated from the Field II simulations, as all intensities will then be quarter symmetric.
 
-## Field II Comparison Simulation
+## Experimentally Measured Face Pressure Field Processing
+The `face_pressure` folder contains code used to process the experimentally measured input pressure fields before being used as inputs to the KZK simulation.
 
+## Field II Comparison Simulation
 The `field` folder contains the code used to run the Field II simulations for comparison to the KZK simulations that were run in linear mode (β = 0).
 
 ## Metrics
