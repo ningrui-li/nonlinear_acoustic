@@ -9,6 +9,10 @@ The KZK intensity fields generated from the quarter symmetric inputs will be the
 ## Experimentally Measured Face Pressure Field Processing
 The `face_pressure` folder contains code used to process the experimentally measured input pressure fields before being used as inputs to the KZK simulation.
 
+## KZK Simulations
+The `kzk` folder contains code used to generate KZK sim face pressure inputs as well as instructions
+on how to run the KZK sims.
+
 ## Field II Comparison Simulation
 The `field` folder contains the code used to run the Field II simulations for comparison to the KZK simulations that were run in linear mode (β = 0).
 
