@@ -43,6 +43,9 @@ FIELD_PARAMS.Impulse = 'gaussian';      % response using defineImpResp.m
 c52_imp_resp = defineImpResp(fractionalBandwidth, centerFrequency, FIELD_PARAMS);
 t_c52_imp_resp = [1:length(c52_imp_resp)] * (1/FIELD_PARAMS.samplingFrequency);
 
+% Get pressure waveform by convolving excitation wave w/ imp response
+pwave = conv(excitation, c52_imp_resp);
+t_pwave = [1:length(pwave)] * (.1/FIELD_PARAMS.samplingFrequency);
 %% Plot excitation wave + impulse response for error-checking
 % Excitation wave
 figure(2)
@@ -59,4 +62,9 @@ xlabel('Time (s)')
 ylabel('Voltage')
 title('C5-2 Gaussian Impulse Response')
 
-
+% Pressure waveform at each element
+subplot(3, 1, 3)
+plot(t_pwave, pwave, 'k-')
+title('C5-2 Pressure Waveform')
+ylabel('Pressure')
+xlabel('Time (s)')
