@@ -11,4 +11,4 @@ A plot was made of pressure vs. time at the 0 mm elevational and 0 mm lateral po
 
 ![Center Trace Plot, C5-2 Expt. Measured Pressure Waveforms, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_pressure_vs_time_centertrace.png)
 
-There appears to be 7 excitation cycles based on the number of distinct peaks seen in the above plot.
+There appears to be 7 excitation cycles based on the number of distinct peaks seen in the above plot. The time between peaks is approximately 0.42 μs, corresponding to a 2.36 MHz excitation.
