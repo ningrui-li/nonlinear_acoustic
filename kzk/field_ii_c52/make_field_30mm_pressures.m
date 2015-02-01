@@ -17,6 +17,7 @@ t = t * 1e6; % seconds to microseconds
 % position.
 figure(1)
 plot(t, squeeze(pressure(:, centerLatAxis, centerEleAxis)), 'k-')
+%plot(squeeze(pressure(:, centerLatAxis, centerEleAxis)))
 xlabel('Time (\mus)')
 ylabel('Pressure')
 title(['Experimentally Measured Face Pressure vs. Time', nln,...
@@ -24,33 +25,40 @@ title(['Experimentally Measured Face Pressure vs. Time', nln,...
 print -dpng c52_30mm_pressure_vs_time_centertrace.png
 
 % From this center trace figure, it appears that there are 7 peaks 
-% corresponding to 7 excitation cycles.
+% corresponding to 7 excitation cycles. The excitation waveform consists of
+% approximately 1500 samples.
+
 % We can also note that the period between peaks is approximately 0.42
 % microseconds, corresponding to about a 2.36 MHz excitation frequency.
 
 %% Create pressure waveform
 % Create sinusoidal excitation wave
 f0 = 2.36e6;                   % excitation frequency (Hz)
-t = linspace(0, 7/f0, 10000);  % time vector (s)
-excitation = sin(2*pi*f0*t);
+% Let time vector be 7 cycles w/ 1500 samples, just like in expt measured
+% data.
+t_wave = linspace(0, 7/f0, 1500);  % time vector (s)
+excitation = sin(2*pi*f0*t_wave);
 
 % Define C5-2 impulse response
 addpath /luscinia/nl91/matlab/fem/field/
 centerFrequency = 3.0e6;
 fractionalBandwidth = 0.7;
-FIELD_PARAMS.samplingFrequency = 0.5e9; % required inputs for calculating impulse
-FIELD_PARAMS.Impulse = 'gaussian';      % response using defineImpResp.m       
+FIELD_PARAMS.samplingFrequency = 1/((t(2)-t(1))*1e-6); % use sampling rate of 
+                                                       % time data of expt
+                                                       % measured KZK
+                                                       % inputs (Hz)
+FIELD_PARAMS.Impulse = 'gaussian';        % assume Gaussian weighted impulse
 c52_imp_resp = defineImpResp(fractionalBandwidth, centerFrequency, FIELD_PARAMS);
 t_c52_imp_resp = [1:length(c52_imp_resp)] * (1/FIELD_PARAMS.samplingFrequency);
 
 % Get pressure waveform by convolving excitation wave w/ imp response
 pwave = conv(excitation, c52_imp_resp);
-t_pwave = [1:length(pwave)] * (.1/FIELD_PARAMS.samplingFrequency);
+t_pwave = [1:length(pwave)] * (1/FIELD_PARAMS.samplingFrequency);
 %% Plot excitation wave + impulse response for error-checking
 % Excitation wave
 figure(2)
 subplot(3, 1, 1)
-plot(t, excitation, 'k-')
+plot(t_wave, excitation, 'k-')
 xlabel('Time (s)')
 ylabel('Voltage')
 title('2.36 MHz Excitation Wave w/ 7 Cycles')
