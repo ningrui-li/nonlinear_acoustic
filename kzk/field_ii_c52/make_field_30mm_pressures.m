@@ -96,4 +96,18 @@ FIELD_PARAMS.Fnum = 2.8;
 
 Th = c52(FIELD_PARAMS);
 
+% See pdf pages 31-32 of Field II user's guide for info on contents of 
+% c52_data and c52_time_delays.
+% http://field-ii.dk/documents/users_guide.pdf
 
+c52_data = xdc_get(Th, 'rect');      % matrix containing lots of parameters 
+                                      % of each element
+c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
+                                        % each physical element
+
+figure(3)
+plot(1e6*c52_time_delays(2:end), 'k-'); % plot w/ time delays in microseconds
+title('C5-2 Element Time Delays')
+xlabel('Physical Element Number')
+ylabel('Time Delay (\mus)')
+xlim([1 length(c52_time_delays(2:end))])
