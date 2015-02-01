@@ -91,7 +91,7 @@ check_start_Field_II;
 
 % See /nonlinear_acoustic/field_field_c52_30mm/ for info on how Fnum was
 % estimated.
-FIELD_PARAMS.focus = [0 0 0.3];
+FIELD_PARAMS.focus = [0 0 0.030];
 FIELD_PARAMS.Fnum = 2.8;
 
 Th = c52(FIELD_PARAMS);
@@ -111,3 +111,7 @@ title('C5-2 Element Time Delays')
 xlabel('Physical Element Number')
 ylabel('Time Delay (\mus)')
 xlim([1 length(c52_time_delays(2:end))])
+
+% C5-2 is a curvilinear probe, so elements away from the center of the
+% probe are further from the focus. Thus, center elements need to be
+% slightly delayed compared to side elements in order to beam form.
