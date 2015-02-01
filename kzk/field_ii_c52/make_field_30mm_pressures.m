@@ -117,11 +117,14 @@ figure(3)
 plot(phys_ele_pos(:, 1), phys_ele_pos(:, 2), 'b.')
 hold on
 plot(math_ele_pos(:, 1), math_ele_pos(:, 2), 'rx')
+hold off
 title('Field II - Physical and Mathematical Element Center Locations')
 xlabel('Lateral Position (mm)')
 ylabel('Elevational Position (mm)')
 axis([-12 12 -10 10]) % expt measured pressure data axis limits
+legend('Physical Elements', 'Mathematical Elements', 0)
 
+%% Apply time delays
 c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
                                         % each physical element
 
