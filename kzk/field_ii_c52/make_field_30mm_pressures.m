@@ -82,3 +82,18 @@ xlabel('Time (s)')
 xlim([0 max(t_pwave)])
 
 print -dpng c52_30mm_synthetic_press_wave.png
+
+%% Get time delays of each element using Field II
+% Get transducer handle using c5-2 probe parameters in probes repository.
+addpath /luscinia/nl91/matlab/fem/probes/fem/ % for define c52 function
+addpath /luscinia/nl91/matlab/Field_II/
+check_start_Field_II;
+
+% See /nonlinear_acoustic/field_field_c52_30mm/ for info on how Fnum was
+% estimated.
+FIELD_PARAMS.focus = [0 0 0.3];
+FIELD_PARAMS.Fnum = 2.8;
+
+Th = c52(FIELD_PARAMS);
+
+
