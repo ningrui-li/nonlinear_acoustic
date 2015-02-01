@@ -124,7 +124,7 @@ ylabel('Elevational Position (mm)')
 axis([-12 12 -10 10]) % expt measured pressure data axis limits
 legend('Physical Elements', 'Mathematical Elements', 0)
 
-%% Place pressure waveform at those locations
+%% Place pressure waveform at element locations
 % Find range of nonzero lateral position indices in which to put pressure
 % waveform
 minLatPosition = min(math_elem_pos(:, 1));
@@ -145,6 +145,15 @@ maxElePosition = round(minElePosition, 1);
 eleMinIndex = find(ele==minElePosition);
 eleMaxIndex = find(ele==maxElePosition);
 
+% Add pressure waveforms uniformly at those locations without time delays
+pressure_field_ii = zeros(size(pressure));
+init_time_ind = 2500;      % time index at which pressure waveform starts
+for latInd = latMinIndex:latMaxIndex
+    for eleInd = eleMinIndex:eleMaxIndex
+        pressure_field_ii(init_time_ind:(init_time_ind+length(pwave)-1),...
+                          latInd, eleInd) = pwave;
+    end
+end
 % %% Get time delays and apply them to pressure input
 % c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
 %                                         % each physical element
