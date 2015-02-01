@@ -124,7 +124,7 @@ ylabel('Elevational Position (mm)')
 axis([-12 12 -10 10]) % expt measured pressure data axis limits
 legend('Physical Elements', 'Mathematical Elements', 0)
 
-%% Place pressure waveform at element locations
+%% Find 'lat' and 'ele' indices corresponding to element locations
 % Find range of nonzero lateral position indices in which to put pressure
 % waveform
 minLatPosition = min(math_elem_pos(:, 1));
@@ -140,31 +140,59 @@ latMaxIndex = find(lat==maxLatPosition);
 minElePosition = min(math_elem_pos(:, 2));
 minElePosition = round(minElePosition, 1);
 maxElePosition = max(math_elem_pos(:, 2));
-maxElePosition = round(minElePosition, 1);
+maxElePosition = round(maxElePosition, 1);
 
 eleMinIndex = find(ele==minElePosition);
 eleMaxIndex = find(ele==maxElePosition);
 
-% Add pressure waveforms uniformly at those locations without time delays
-pressure_field_ii = zeros(size(pressure));
-init_time_ind = 2500;      % time index at which pressure waveform starts
-for latInd = latMinIndex:latMaxIndex
-    for eleInd = eleMinIndex:eleMaxIndex
-        pressure_field_ii(init_time_ind:(init_time_ind+length(pwave)-1),...
-                          latInd, eleInd) = pwave;
+%% Get time delays in terms of indices corresponding to each plane position 
+c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
+                                        % each physical element
+c52_time_delays = c52_time_delays(2:end); % remove first index
+                                       
+figure(4)
+plot(1e6*c52_time_delays, 'k.'); % plot w/ time delays in microseconds
+title('C5-2 Element Time Delays')
+xlabel('Physical Element Number')
+ylabel('Time Delay (\mus)')
+xlim([1 length(c52_time_delays)])
+
+c52_time_delays = round(c52_time_delays*3e8);
+
+pressure_field_time_delays = zeros(length(lat), length(ele));
+latCenterIndex = round(length(lat)/2);
+eleRange = eleMinIndex:eleMaxIndex;
+
+for latInd = latMinIndex:latCenterIndex
+    if (latInd == latCenterIndex)
+        timeDelayCenterIndex = floor(length(c52_time_delays)/2);
+        latTimeDelay = round(mean(c52_time_delays(timeDelayCenterIndex:timeDelayCenterIndex+1)));
+        pressure_field_time_delays(latInd, eleRange) = ones(1,length(eleRange))*...
+                                                       latTimeDelay;
+    else
+        latTimeDelayInd = round((latInd-latMinIndex+1)/2);
+        latTimeDelay = c52_time_delays(latTimeDelayInd);
+        pressure_field_time_delays(latInd, eleRange) = ones(1, length(eleRange))*...
+                                                        latTimeDelay;
+        % Also calculate time delay for other side of plane, since delays
+        % are symmetric across elevational axis.
+        symmLatInd = length(lat)+1-latInd;
+        pressure_field_time_delays(symmLatInd, eleRange) = ones(1, length(eleRange))*...
+                                                           latTimeDelay;
     end
 end
-% %% Get time delays and apply them to pressure input
-% c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
-%                                         % each physical element
-% 
-% figure(4)
-% plot(1e6*c52_time_delays(2:end), 'k-'); % plot w/ time delays in microseconds
-% title('C5-2 Element Time Delays')
-% xlabel('Physical Element Number')
-% ylabel('Time Delay (\mus)')
-% xlim([1 length(c52_time_delays(2:end))])
-% 
-% % C5-2 is a curvilinear probe, so elements away from the center of the
-% % probe are further from the focus. Thus, center elements need to be
-% % slightly delayed compared to side elements in order to beam form.
+
+% C5-2 is a curvilinear probe, so elements away from the center of the
+% probe are further from the focus. Thus, center elements need to be
+% slightly delayed compared to side elements in order to beam form.
+
+% Add pressure waveforms uniformly at those locations without time delays
+% pressure_field_ii = zeros(size(pressure));
+% init_time_ind = 3100;      % time index at which pressure waveform starts
+% for latInd = latMinIndex:latMaxIndex
+%     for eleInd = eleMinIndex:eleMaxIndex
+%         pressure_field_ii(init_time_ind:(init_time_ind+length(pwave)-1),...
+%                           latInd, eleInd) = pwave;
+%     end
+% end
+
