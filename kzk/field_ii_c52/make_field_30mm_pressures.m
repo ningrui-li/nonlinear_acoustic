@@ -101,11 +101,31 @@ Th = c52(FIELD_PARAMS);
 % http://field-ii.dk/documents/users_guide.pdf
 
 c52_data = xdc_get(Th, 'rect');      % matrix containing lots of parameters 
-                                      % of each element
+                                     % of each element
+                                      
+phys_ele_pos = c52_data(24:26, :);   % Get submatrix containing physical 
+                                     % element locations only
+phys_ele_pos = unique(phys_ele_pos', 'rows'); % Remove repeated locations.
+phys_ele_pos = phys_ele_pos * 1e3;   % convert m to mm
+
+math_ele_pos = c52_data(8:10, :);    % Get submatrix containing physical 
+                                     % element locations only. (Ignore axial)
+math_ele_pos = unique(math_ele_pos', 'rows'); % Remove repeated locations.
+math_ele_pos = math_ele_pos * 1e3;   % convert m to mm
+
+figure(3)
+plot(phys_ele_pos(:, 1), phys_ele_pos(:, 2), 'b.')
+hold on
+plot(math_ele_pos(:, 1), math_ele_pos(:, 2), 'rx')
+title('Field II - Physical and Mathematical Element Center Locations')
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+axis([-12 12 -10 10]) % expt measured pressure data axis limits
+
 c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
                                         % each physical element
 
-figure(3)
+figure(4)
 plot(1e6*c52_time_delays(2:end), 'k-'); % plot w/ time delays in microseconds
 title('C5-2 Element Time Delays')
 xlabel('Physical Element Number')
