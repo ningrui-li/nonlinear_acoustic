@@ -83,7 +83,7 @@ xlim([0 max(t_pwave)])
 
 print -dpng c52_30mm_synthetic_press_wave.png
 
-%% Get time delays of each element using Field II
+%% Get locations of each element using Field II
 % Get transducer handle using c5-2 probe parameters in probes repository.
 addpath /luscinia/nl91/matlab/fem/probes/fem/ % for define c52 function
 addpath /luscinia/nl91/matlab/Field_II/
@@ -103,20 +103,20 @@ Th = c52(FIELD_PARAMS);
 c52_data = xdc_get(Th, 'rect');      % matrix containing lots of parameters 
                                      % of each element
                                       
-phys_ele_pos = c52_data(24:26, :);   % Get submatrix containing physical 
+phys_elem_pos = c52_data(24:26, :);   % Get submatrix containing physical 
                                      % element locations only
-phys_ele_pos = unique(phys_ele_pos', 'rows'); % Remove repeated locations.
-phys_ele_pos = phys_ele_pos * 1e3;   % convert m to mm
+phys_elem_pos = unique(phys_elem_pos', 'rows'); % Remove repeated locations.
+phys_elem_pos = phys_elem_pos * 1e3;   % convert m to mm
 
-math_ele_pos = c52_data(8:10, :);    % Get submatrix containing physical 
+math_elem_pos = c52_data(8:10, :);    % Get submatrix containing physical 
                                      % element locations only. (Ignore axial)
-math_ele_pos = unique(math_ele_pos', 'rows'); % Remove repeated locations.
-math_ele_pos = math_ele_pos * 1e3;   % convert m to mm
+math_elem_pos = unique(math_elem_pos', 'rows'); % Remove repeated locations.
+math_elem_pos = math_elem_pos * 1e3;   % convert m to mm
 
 figure(3)
-plot(phys_ele_pos(:, 1), phys_ele_pos(:, 2), 'b.')
+plot(phys_elem_pos(:, 1), phys_elem_pos(:, 2), 'b.')
 hold on
-plot(math_ele_pos(:, 1), math_ele_pos(:, 2), 'rx')
+plot(math_elem_pos(:, 1), math_elem_pos(:, 2), 'rx')
 hold off
 title('Field II - Physical and Mathematical Element Center Locations')
 xlabel('Lateral Position (mm)')
@@ -124,17 +124,38 @@ ylabel('Elevational Position (mm)')
 axis([-12 12 -10 10]) % expt measured pressure data axis limits
 legend('Physical Elements', 'Mathematical Elements', 0)
 
-%% Apply time delays
-c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
-                                        % each physical element
+%% Place pressure waveform at those locations
+% Find range of nonzero lateral position indices in which to put pressure
+% waveform
+minLatPosition = min(math_elem_pos(:, 1));
+minLatPosition = round(minLatPosition, 1);
+maxLatPosition = max(math_elem_pos(:, 1));
+maxLatPosition = round(maxLatPosition, 1);
 
-figure(4)
-plot(1e6*c52_time_delays(2:end), 'k-'); % plot w/ time delays in microseconds
-title('C5-2 Element Time Delays')
-xlabel('Physical Element Number')
-ylabel('Time Delay (\mus)')
-xlim([1 length(c52_time_delays(2:end))])
+latMinIndex = find(lat==minLatPosition); 
+latMaxIndex = find(lat==maxLatPosition); 
 
-% C5-2 is a curvilinear probe, so elements away from the center of the
-% probe are further from the focus. Thus, center elements need to be
-% slightly delayed compared to side elements in order to beam form.
+% Find range of nonzero elevational position indices in which to put pressure
+% waveform
+minElePosition = min(math_elem_pos(:, 2));
+minElePosition = round(minElePosition, 1);
+maxElePosition = max(math_elem_pos(:, 2));
+maxElePosition = round(minElePosition, 1);
+
+eleMinIndex = find(ele==minElePosition);
+eleMaxIndex = find(ele==maxElePosition);
+
+% %% Get time delays and apply them to pressure input
+% c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
+%                                         % each physical element
+% 
+% figure(4)
+% plot(1e6*c52_time_delays(2:end), 'k-'); % plot w/ time delays in microseconds
+% title('C5-2 Element Time Delays')
+% xlabel('Physical Element Number')
+% ylabel('Time Delay (\mus)')
+% xlim([1 length(c52_time_delays(2:end))])
+% 
+% % C5-2 is a curvilinear probe, so elements away from the center of the
+% % probe are further from the focus. Thus, center elements need to be
+% % slightly delayed compared to side elements in order to beam form.
