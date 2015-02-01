@@ -185,14 +185,15 @@ end
 % C5-2 is a curvilinear probe, so elements away from the center of the
 % probe are further from the focus. Thus, center elements need to be
 % slightly delayed compared to side elements in order to beam form.
-
+% 
 % Add pressure waveforms uniformly at those locations without time delays
-% pressure_field_ii = zeros(size(pressure));
-% init_time_ind = 3100;      % time index at which pressure waveform starts
-% for latInd = latMinIndex:latMaxIndex
-%     for eleInd = eleMinIndex:eleMaxIndex
-%         pressure_field_ii(init_time_ind:(init_time_ind+length(pwave)-1),...
-%                           latInd, eleInd) = pwave;
-%     end
-% end
+pressure_field_ii = zeros(size(pressure));
+init_time_ind = 3100;      % time index at which pressure waveform starts
+for latInd = latMinIndex:latMaxIndex
+    for eleInd = eleMinIndex:eleMaxIndex
+        start_time_ind = init_time_ind + pressure_field_time_delays(latInd, eleInd);
+        end_time_ind = start_time_ind + length(pwave)-1;
+        pressure_field_ii(start_time_ind:end_time_ind, latInd, eleInd) = pwave;
+    end
+end
 
