@@ -71,6 +71,7 @@ plot(t_c52_imp_resp, c52_imp_resp, 'k-')
 xlabel('Time (s)')
 ylabel('Voltage')
 title('C5-2 Gaussian Impulse Response')
+xlim([0 max(t_c52_imp_resp)])
 
 % Pressure waveform at each element
 subplot(3, 1, 3)
@@ -78,5 +79,6 @@ plot(t_pwave, pwave, 'k-')
 title('C5-2 Pressure Waveform')
 ylabel('Pressure')
 xlabel('Time (s)')
+xlim([0 max(t_pwave)])
 
 print -dpng c52_30mm_synthetic_press_wave.png
