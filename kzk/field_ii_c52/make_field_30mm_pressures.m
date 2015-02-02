@@ -170,13 +170,10 @@ end
 % transducer.
 
 %% interpolating intensity values to correspond to a mesh of uniform size
-%[eleGridOrig, latGridOrig] = ndgrid(math_elem_pos(:, 2), math_elem_pos(:, 1));
 [eleGridInterp, latGridInterp] = ndgrid(ele, lat);
-
-% math_elem_depths = reshape
-
 depth_field = griddata(math_elem_pos(:, 2), math_elem_pos(:, 1), math_elem_pos(:, 3),...
                        eleGridInterp, latGridInterp, 'linear');
+                   
 depth_field(isnan(depth_field)) = 0; % Set NaN vals to 0.
 depth_field = depth_field * 1e-3; % mm to m
 depth_field = depth_field'; % change dimensions to be lat x ele
@@ -220,6 +217,15 @@ for latInd = 1:length(lat)
         c52_intensity_plane(latInd, eleInd) = sumsqr(pressure_field_ii(:, latInd, eleInd));
     end
 end
+
+% convert data from double precision to single precision
+ele = single(ele);
+lat = single(lat);
+t = single(t);
+pressure = single(pressure_field_ii);
+
+% save data
+save field_ii_c52_30mm_pressure_input.mat ele lat t pressure
 
 %% Time delay plots
 figure(3)
