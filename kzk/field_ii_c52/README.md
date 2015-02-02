@@ -19,5 +19,19 @@ Finally, the excitation wave was convolved with the impulse response of the C5-2
 
 ![Synthesized Pressure Waveform, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_synthetic_press_wave.png)
 
+The C5-2 transducer parameters were modeled using Field II (with 30 mm focus and F/2.8) and the C5-2 element dimensions found in `c52.m` in the `/probes/fem/` repository. A plot of the mathematical and physical element locations can be found below. The pressure field w/o time delays was made by placing a pressure waveform at approximately each mathematical element location.
 
+![Physical and Mathematical Element Locations, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_phys_math_elem_locs.png)
+
+The intensity field was constructed by taking the sum of the squares of the pressure waveform through time at each location. A plot the intensity field can be seen in the figure below.
+
+![Intensity Field, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_intensity_plane.png)
+
+The time delays were also calculated using Field II. A plot of the time delays can be seen below. A more negative delay meant that the signal occurred ther eearlier in time.
+
+![Physical Element Time Delays, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_phys_elem_time_delays.png)
+
+The time delays were applied to the pressure field, and the resulting time delays at each mathematical element can be seen below. Once again, more negative delay indicates that the signal occurred earlier in time.
+
+![Pressure Field Time Delays, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_press_field_time_delays.png)
 
