@@ -177,11 +177,31 @@ end
 
 depth_field = griddata(math_elem_pos(:, 2), math_elem_pos(:, 1), math_elem_pos(:, 3),...
                        eleGridInterp, latGridInterp, 'linear');
-depth_field = depth_field';
+depth_field(isnan(depth_field)) = 0; % Set NaN vals to 0.
+depth_field = depth_field * 1e-3; % mm to m
+depth_field = depth_field'; % change dimensions to be lat x ele
+
+soundSpeed = 1540; % m/s
+% convert depth values to a time delay based on sound speed.
+depth_time_delay = depth_field ./ soundSpeed; 
+% convert time delay into time indices delay based on sampling rate     
+depth_time_delay = depth_time_delay * FIELD_PARAMS.samplingFrequency;                                     
+depth_time_delay = round(depth_time_delay);
+% negate depth_field values because a more negative depth means that the
+% signal will occur later in time, so the pressure signals from that
+% location need to be shifted forward.
+depth_time_delay = -depth_time_delay;
+
+% start_time_ind is the time index when the pressure wave at that
+% locations begins. It is based on the actual element time delay
+% (from pressure_field_time_delays) as well as the delay due to
+% transducer geometry (from depth_time_delay).
+pressure_field_time_delays = pressure_field_time_delays + depth_time_delay;
+
 % C5-2 is a curvilinear probe, so elements away from the center of the
 % probe are further from the focus. Thus, center elements need to be
 % slightly delayed compared to side elements in order to beam form.
-% 
+
 % Add pressure waveforms uniformly at those locations without time delays
 pressure_field_ii = zeros(size(pressure));
 init_time_ind = 3100;      % time index at which pressure waveform starts
