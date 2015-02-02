@@ -165,6 +165,19 @@ for latInd = latMinIndex:latCenterIndex
     end
 end
 
+% time delays due to mathematical element location in z-axis. There will be
+% additional time delay on each element due to the curved geometry of the
+% transducer.
+
+%% interpolating intensity values to correspond to a mesh of uniform size
+%[eleGridOrig, latGridOrig] = ndgrid(math_elem_pos(:, 2), math_elem_pos(:, 1));
+[eleGridInterp, latGridInterp] = ndgrid(ele, lat);
+
+% math_elem_depths = reshape
+
+depth_field = griddata(math_elem_pos(:, 2), math_elem_pos(:, 1), math_elem_pos(:, 3),...
+                       eleGridInterp, latGridInterp, 'linear');
+depth_field = depth_field';
 % C5-2 is a curvilinear probe, so elements away from the center of the
 % probe are further from the focus. Thus, center elements need to be
 % slightly delayed compared to side elements in order to beam form.
@@ -209,6 +222,7 @@ colorbar
 print -dpng c52_30mm_press_field_time_delays.png
 
 %% Elem locations and intensity plot
+% Physical and mathematical element locations (w/o looking at depth)
 figure(5)
 plot(phys_elem_pos(:, 1), phys_elem_pos(:, 2), 'b.')
 hold on
@@ -222,6 +236,7 @@ legend('Physical Elements', 'Mathematical Elements', 0)
 
 print -dpng c52_30mm_phys_math_elem_locs.png
 
+% Intensity plot
 figure(6)
 imagesc(lat, ele, c52_intensity_plane')
 title(['Field II' nln 'Pressure Input Intensity Plane'])
@@ -230,3 +245,20 @@ ylabel('Elevational Position (mm)')
 axis([-12 12 -10 10]) % expt measured pressure data axis limits
 
 print -dpng c52_30mm_intensity_plane.png
+
+% Mathematical element locations (both interp and non-interp)
+figure(7)
+subplot(2, 1, 1)
+scatter3(math_elem_pos(:, 1), math_elem_pos(:, 2),  math_elem_pos(:, 3))
+title(['Field II' nln 'Mathematical Element Locations'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+
+subplot(2, 1, 2)
+imagesc(lat, ele, depth_field')
+title(['Field II' nln 'Grid Interpolated Mathematical Element Locations'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+colorbar
+
+print -dpng c52_30mm_interp_elem_locations.png
