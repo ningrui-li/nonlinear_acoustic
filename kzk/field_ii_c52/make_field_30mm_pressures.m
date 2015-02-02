@@ -219,10 +219,11 @@ for latInd = 1:length(lat)
 end
 
 % convert data from double precision to single precision
-ele = single(ele);
-lat = single(lat);
-t = single(t);
-pressure = single(pressure_field_ii);
+% ele = single(ele);
+% lat = single(lat);
+% t = single(t);
+% pressure = single(pressure_field_ii);
+pressure = pressure_field_ii;
 
 % save data
 save field_ii_c52_30mm_pressure_input.mat ele lat t pressure
