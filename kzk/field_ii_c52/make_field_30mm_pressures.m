@@ -113,17 +113,6 @@ math_elem_pos = c52_data(8:10, :);    % Get submatrix containing physical
 math_elem_pos = unique(math_elem_pos', 'rows'); % Remove repeated locations.
 math_elem_pos = math_elem_pos * 1e3;   % convert m to mm
 
-figure(3)
-plot(phys_elem_pos(:, 1), phys_elem_pos(:, 2), 'b.')
-hold on
-plot(math_elem_pos(:, 1), math_elem_pos(:, 2), 'rx')
-hold off
-title('Field II - Physical and Mathematical Element Center Locations')
-xlabel('Lateral Position (mm)')
-ylabel('Elevational Position (mm)')
-axis([-12 12 -10 10]) % expt measured pressure data axis limits
-legend('Physical Elements', 'Mathematical Elements', 0)
-
 %% Find 'lat' and 'ele' indices corresponding to element locations
 % Find range of nonzero lateral position indices in which to put pressure
 % waveform
@@ -150,14 +139,8 @@ c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
                                         % each physical element
 c52_time_delays = c52_time_delays(2:end); % remove first index
                                        
-figure(4)
-plot(1e6*c52_time_delays, 'k.'); % plot w/ time delays in microseconds
-title('C5-2 Element Time Delays')
-xlabel('Physical Element Number')
-ylabel('Time Delay (\mus)')
-xlim([1 length(c52_time_delays)])
-
-c52_time_delays = round(c52_time_delays*3e8);
+c52_time_delays = round(c52_time_delays*FIELD_PARAMS.samplingFrequency); % convert from seconds to
+                                              % time indices
 
 pressure_field_time_delays = zeros(length(lat), length(ele));
 latCenterIndex = round(length(lat)/2);
@@ -197,3 +180,53 @@ for latInd = latMinIndex:latMaxIndex
     end
 end
 
+% Calculate intensity plane
+c52_intensity_plane = zeros(length(lat), length(ele));
+for latInd = 1:length(lat)
+    for eleInd = 1:length(ele)
+        c52_intensity_plane(latInd, eleInd) = sumsqr(pressure_field_ii(:, latInd, eleInd));
+    end
+end
+
+%% Time delay plots
+figure(3)
+plot(1e6*c52_time_delays, 'k.'); % plot w/ time delays in microseconds
+title('C5-2 Element Time Delays')
+xlabel('Physical Element Number')
+ylabel('Time Delay (\mus)')
+xlim([1 length(c52_time_delays)])
+
+print -dpng c52_30mm_phys_elem_time_delays.png
+
+figure(4)
+imagesc(lat, ele, pressure_field_time_delays')
+title(['Field II' nln 'Pressure Input Time Delays'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+axis([-12 12 -10 10]) % expt measured pressure data axis limits
+colorbar
+
+print -dpng c52_30mm_press_field_time_delays.png
+
+%% Elem locations and intensity plot
+figure(5)
+plot(phys_elem_pos(:, 1), phys_elem_pos(:, 2), 'b.')
+hold on
+plot(math_elem_pos(:, 1), math_elem_pos(:, 2), 'rx')
+hold off
+title(['Field II' nln 'Physical and Mathematical Element Center Locations'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+axis([-12 12 -10 10]) % expt measured pressure data axis limits
+legend('Physical Elements', 'Mathematical Elements', 0)
+
+print -dpng c52_30mm_phys_math_elem_locs.png
+
+figure(6)
+imagesc(lat, ele, c52_intensity_plane')
+title(['Field II' nln 'Pressure Input Intensity Plane'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+axis([-12 12 -10 10]) % expt measured pressure data axis limits
+
+print -dpng c52_30mm_intensity_plane.png
