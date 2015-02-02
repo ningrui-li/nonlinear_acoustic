@@ -31,7 +31,12 @@ The element time delays were also calculated using Field II. A plot of these tim
 
 ![Physical Element Time Delays, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_phys_elem_time_delays.png)
 
-Additionally, there were extra time delays that occurred as a result of the curved geometry of the transducer probe. The mathematical elements were not located at the same depth, so signals with a more negative depth would need to travel a greater distance to reach the mesh. This distance was converted to time delays by assuming that the sound speed was 1540 m/s and calculating the corresponding time delay at each element. The time delay (s) was converted into time delay indices using the same sampling frequency as above (500 MHz). The time delays were applied to the pressure field, and the resulting time delays at each mathematical element can be seen below. Once again, more negative delay indicates that the signal occurred earlier in time.
+Additionally, there were extra time delays that occurred as a result of the curved geometry of the transducer probe. Unfortuantely, the depth locations did not occur at uniformly spaced locations on the plane, so they were interpolated to those grid locations. A scatterplot plot of the original 3D locations of each mathematical element as well as a plot of the interpolated depth values at each plane location can be seen below.
+
+![3D Mathematical Element Locations, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_interp_elem_locations.png)
+
+The mathematical elements were not located at the same depth, so signals with a more negative depth would need to travel a greater distance to reach the mesh. This distance was converted to time delays by assuming that the sound speed was 1540 m/s and calculating the corresponding time delay at each element. The time delay (s) was converted into time delay indices using the same sampling frequency as above (500 MHz). 
+The time delays were applied to the pressure field, and the resulting time delays at each mathematical element can be seen below. Once again, more negative delay indicates that the signal occurred earlier in time.
 
 ![Pressure Field Time Delays, C5-2, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/kzk/field_ii_c52/c52_30mm_press_field_time_delays.png)
 
