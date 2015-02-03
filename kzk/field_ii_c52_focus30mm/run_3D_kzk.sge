@@ -1,0 +1,14 @@
+#!/bin/bash
+#$ -o sgetmp
+#$ -e sgetmp
+#$ -r y
+#$ -l mem_free=1G
+#$ -pe smp 12
+#$ -R yes 
+#$ -cwd 
+#
+date
+hostname
+
+export DISPLAY=
+matlab -nojvm -nodisplay -r "try3d_kzk_sim"
