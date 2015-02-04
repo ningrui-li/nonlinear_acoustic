@@ -51,3 +51,30 @@ t_c52_imp_resp = (1:length(c52_imp_resp)) * (1/FIELD_PARAMS.samplingFrequency);
 % Get pressure waveform by convolving excitation wave w/ imp response
 pwave = conv(excitation, c52_imp_resp);
 t_pwave = (1:length(pwave)) * (1/FIELD_PARAMS.samplingFrequency);
+
+%% Plot excitation wave + impulse response for error-checking
+% Excitation wave
+figure(2)
+subplot(3, 1, 1)
+plot(t_wave, excitation, 'k-')
+xlabel('Time (s)')
+ylabel('Voltage')
+title('2.36 MHz Excitation Wave w/ 7 Cycles')
+
+% C5-2 Gaussian impulse response
+subplot(3, 1, 2)
+plot(t_c52_imp_resp, c52_imp_resp, 'k-')
+xlabel('Time (s)')
+ylabel('Voltage')
+title('C5-2 Gaussian Impulse Response')
+xlim([0 max(t_c52_imp_resp)])
+
+% Pressure waveform at each element
+subplot(3, 1, 3)
+plot(t_pwave, pwave, 'k-')
+title('C5-2 Pressure Waveform')
+ylabel('Pressure')
+xlabel('Time (s)')
+xlim([0 max(t_pwave)])
+
+print -dpng c52_70mm_synthetic_press_wave.png
