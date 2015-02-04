@@ -111,3 +111,42 @@ math_elem_pos = c52_data(8:10, :);    % Get submatrix containing physical
                                      % element locations only. (Ignore axial)
 math_elem_pos = math_elem_pos';
 math_elem_pos = math_elem_pos * 1e3;   % convert m to mm
+
+%% Find 'lat' and 'ele' indices corresponding to element locations
+% Find range of nonzero lateral position indices in which to put pressure
+% waveform
+minLatPosition = min(math_elem_pos(:, 1));
+minLatPosition = round(minLatPosition, 1);
+% needs to have even tenth's place b/c lat sweeps in 0.2 mm intervals
+if (mod(minLatPosition, 0.2) ~= 0)
+    minLatPosition = minLatPosition + 0.1;
+end
+
+maxLatPosition = max(math_elem_pos(:, 1));
+maxLatPosition = round(maxLatPosition, 1);
+% needs to have even tenth's place b/c lat sweeps in 0.2 mm intervals
+if (mod(maxLatPosition, 0.2) ~= 0)
+    maxLatPosition = maxLatPosition - 0.1;
+end
+
+latMinIndex = find(lat==minLatPosition); 
+latMaxIndex = find(lat==maxLatPosition); 
+
+% Find range of nonzero elevational position indices in which to put pressure
+% waveform
+minElePosition = min(math_elem_pos(:, 2));
+minElePosition = round(minElePosition, 1);
+% needs to have even tenth's place b/c ele sweeps in 0.2 mm intervals
+if (mod(minLatPosition, 0.2) ~= 0)
+    minElePosition = minElePosition + 0.1;
+end
+
+maxElePosition = max(math_elem_pos(:, 2));
+maxElePosition = round(maxElePosition, 1);
+% needs to have even tenth's place b/c ele sweeps in 0.2 mm intervals
+if (mod(maxLatPosition, 0.2) ~= 0)
+    maxElePosition = maxElePosition - 0.1;
+end
+
+eleMinIndex = find(ele==minElePosition);
+eleMaxIndex = find(ele==maxElePosition);
