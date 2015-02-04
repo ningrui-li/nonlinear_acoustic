@@ -234,3 +234,65 @@ end
 pressure = pressure_field_ii;
 
 save field_ii_c52_70mm_pressure_input.mat ele lat t pressure
+
+%% Time delay plots
+figure(3)
+plot(1e6*c52_time_delays, 'k.'); % plot w/ time delays in microseconds
+title('C5-2 Element Time Delays')
+xlabel('Physical Element Number')
+ylabel('Time Delay (\mus)')
+xlim([1 length(c52_time_delays)])
+
+print -dpng c52_70mm_phys_elem_time_delays.png
+
+figure(4)
+imagesc(lat, ele, pressure_field_time_delays')
+title(['Field II' nln 'Pressure Input Time Delays'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+axis([min(lat) max(lat) min(ele) max(ele)]) % expt measured pressure data axis limits
+colorbar
+
+print -dpng c52_70mm_press_field_time_delays.png
+
+%% Elem locations and intensity plot
+% Physical and mathematical element locations (w/o looking at depth)
+figure(5)
+plot(phys_elem_pos(:, 1), phys_elem_pos(:, 2), 'b.')
+hold on
+plot(math_elem_pos(:, 1), math_elem_pos(:, 2), 'rx')
+hold off
+title(['Field II' nln 'Physical and Mathematical Element Center Locations'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+axis([min(lat) max(lat) min(ele) max(ele)]) % expt measured pressure data axis limits
+legend('Physical Elements', 'Mathematical Elements', 0)
+
+print -dpng c52_70mm_phys_math_elem_locs.png
+
+% Intensity plot
+figure(6)
+imagesc(lat, ele, c52_intensity_plane')
+title(['Field II' nln 'Pressure Input Intensity Plane'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+axis([min(lat) max(lat) min(ele) max(ele)]) % expt measured pressure data axis limits
+
+print -dpng c52_70mm_intensity_plane.png
+
+% Mathematical element locations (both interp and non-interp)
+figure(7)
+subplot(2, 1, 1)
+scatter3(math_elem_pos(:, 1), math_elem_pos(:, 2),  math_elem_pos(:, 3))
+title(['Field II' nln 'Mathematical Element Locations'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+
+subplot(2, 1, 2)
+imagesc(lat, ele, depth_field')
+title(['Field II' nln 'Grid Interpolated Mathematical Element Locations'])
+xlabel('Lateral Position (mm)')
+ylabel('Elevational Position (mm)')
+colorbar
+
+print -dpng c52_70mm_interp_elem_locations.png
