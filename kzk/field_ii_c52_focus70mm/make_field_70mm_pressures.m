@@ -150,3 +150,34 @@ end
 
 eleMinIndex = find(ele==minElePosition);
 eleMaxIndex = find(ele==maxElePosition);
+
+%% Get time delays in terms of indices corresponding to each plane position 
+c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
+                                        % each physical element
+c52_time_delays = c52_time_delays(2:end); % remove first index
+                                       
+c52_time_delays = round(c52_time_delays*FIELD_PARAMS.samplingFrequency); % convert from seconds to
+                                              % time indices
+                                              
+pressure_field_time_delays = zeros(length(lat), length(ele));
+latCenterIndex = round(length(lat)/2);
+eleRange = eleMinIndex:eleMaxIndex;
+
+for latInd = latMinIndex:latCenterIndex
+    if (latInd == latCenterIndex)
+        timeDelayCenterIndex = floor(length(c52_time_delays)/2);
+        latTimeDelay = round(mean(c52_time_delays(timeDelayCenterIndex:timeDelayCenterIndex+1)));
+        pressure_field_time_delays(latInd, eleRange) = ones(1,length(eleRange))*...
+                                                       latTimeDelay;
+    else
+        latTimeDelayInd = round((latInd-latMinIndex+1)/2);
+        latTimeDelay = c52_time_delays(latTimeDelayInd);
+        pressure_field_time_delays(latInd, eleRange) = ones(1, length(eleRange))*...
+                                                        latTimeDelay;
+        % Also calculate time delay for other side of plane, since delays
+        % are symmetric across elevational axis.
+        symmLatInd = length(lat)+1-latInd;
+        pressure_field_time_delays(symmLatInd, eleRange) = ones(1, length(eleRange))*...
+                                                           latTimeDelay;
+    end
+end
