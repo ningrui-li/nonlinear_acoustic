@@ -39,15 +39,18 @@ f0 = 2.36e6; % excitation frequency (Hz)
 % data.
 t_wave = linspace(0, numExcitationCycles/f0, numSamples); % time vector (s)
 excitation = sin(2*pi*f0*t_wave);
+
 % Define C5-2 impulse response using defineImpResp in FEM tools
 addpath /luscinia/nl91/matlab/fem/field/
 centerFrequency = 3.0e6;
 fractionalBandwidth = 0.7;
+
 % use sampling rate of time data of expt measured KZK inputs (Hz)
 FIELD_PARAMS.samplingFrequency = 1/((t(2)-t(1))*1e-6); 
 FIELD_PARAMS.Impulse = 'gaussian'; % assume Gaussian weighted impulse
 c52_imp_resp = defineImpResp(fractionalBandwidth, centerFrequency, FIELD_PARAMS);
 t_c52_imp_resp = (1:length(c52_imp_resp)) * (1/FIELD_PARAMS.samplingFrequency);
+
 % Get pressure waveform by convolving excitation wave w/ imp response
 pwave = conv(excitation, c52_imp_resp);
 t_pwave = (1:length(pwave)) * (1/FIELD_PARAMS.samplingFrequency);
@@ -78,3 +81,33 @@ xlabel('Time (s)')
 xlim([0 max(t_pwave)])
 
 print -dpng c52_70mm_synthetic_press_wave.png
+
+%% Get locations of each element using Field II
+% Get transducer handle using c5-2 probe parameters in probes repository.
+addpath /luscinia/nl91/matlab/fem/probes/fem/ % for define c52 function
+addpath /luscinia/nl91/matlab/Field_II/
+check_start_Field_II;
+
+% See /nonlinear_acoustic/field/field_c52_70mm/ for info on how Fnum was
+% estimated.
+FIELD_PARAMS.focus = [0 0 0.070];
+FIELD_PARAMS.Fnum = 3.5;
+
+Th = c52(FIELD_PARAMS);
+
+% See pdf pages 31-32 of Field II user's guide for info on contents of 
+% c52_data and c52_time_delays.
+% http://field-ii.dk/documents/users_guide.pdf
+
+c52_data = xdc_get(Th, 'rect');      % matrix containing lots of parameters 
+                                     % of each element
+                                      
+phys_elem_pos = c52_data(24:26, :);   % Get submatrix containing physical 
+                                     % element locations only
+phys_elem_pos = unique(phys_elem_pos', 'rows'); % Remove repeated locations.
+phys_elem_pos = phys_elem_pos * 1e3;   % convert m to mm
+
+math_elem_pos = c52_data(8:10, :);    % Get submatrix containing physical 
+                                     % element locations only. (Ignore axial)
+math_elem_pos = math_elem_pos';
+math_elem_pos = math_elem_pos * 1e3;   % convert m to mm
