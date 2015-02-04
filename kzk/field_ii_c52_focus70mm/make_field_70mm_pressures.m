@@ -28,6 +28,26 @@ print -dpng c52_70mm_pressure_vs_time_centertrace.png
 % corresponding to 7 excitation cycles. The excitation waveform consists of
 % approximately 1500 samples.
 numExcitationCycles = 7;
-numSamples = 1600;
+numSamples = 1500;
 % We can also note that the period between peaks is approximately 0.42
 % microseconds, corresponding to about a 2.36 MHz excitation frequency.
+
+%% Create pressure waveform
+% Create sinusoidal excitation wave
+f0 = 2.36e6; % excitation frequency (Hz)
+% Let time vector be 7 cycles w/ 1500 samples, just like in expt measured
+% data.
+t_wave = linspace(0, numExcitationCycles/f0, numSamples); % time vector (s)
+excitation = sin(2*pi*f0*t_wave);
+% Define C5-2 impulse response using defineImpResp in FEM tools
+addpath /luscinia/nl91/matlab/fem/field/
+centerFrequency = 3.0e6;
+fractionalBandwidth = 0.7;
+% use sampling rate of time data of expt measured KZK inputs (Hz)
+FIELD_PARAMS.samplingFrequency = 1/((t(2)-t(1))*1e-6); 
+FIELD_PARAMS.Impulse = 'gaussian'; % assume Gaussian weighted impulse
+c52_imp_resp = defineImpResp(fractionalBandwidth, centerFrequency, FIELD_PARAMS);
+t_c52_imp_resp = (1:length(c52_imp_resp)) * (1/FIELD_PARAMS.samplingFrequency);
+% Get pressure waveform by convolving excitation wave w/ imp response
+pwave = conv(excitation, c52_imp_resp);
+t_pwave = (1:length(pwave)) * (1/FIELD_PARAMS.samplingFrequency);
