@@ -83,8 +83,9 @@ imagesc(squeeze(intensity_kzk_finput_30mm(end, :, :))')
 figure(2)
 centertrace('field_kzk_centertrace_c52_30mm.png', 'Field vs. KZK Center Trace - C5-2, 30 mm Focus',...
             intensity_field_30mm, intensity_field_30mm_depth, 'Field II, C5-2, 30 mm Focus',...
-            intensity_kzk_30mm, intensity_kzk_30mm_depth, 'KZK, C5-2, 30 mm Focus')
-%% KZK contour plots
+            intensity_kzk_30mm, intensity_kzk_30mm_depth, 'KZK, Expt. Input, C5-2, 30 mm Focus',...
+            intensity_kzk_finput_30mm, intensity_kzk_30mm_depth, 'KZK, Field II Input, C5-2, 30mm Focus')
+%% KZK, expt measured inputs, contour plots
 % 10 is the ASCII value for a newline. used to break subplot title string
 % into multiple lines.
 nln = 10;
@@ -94,7 +95,7 @@ nln = 10;
 % because KZK intensity field is maximum in 2.3 cm plane and Field II
 % intensity field is max in 3.2 cm plane.
 figure(3);
-contourplots('kzk_30mm_depth.png', ['KZK, 30 mm Focus' nln 'Depth Plane'],...
+contourplots('kzk_30mm_depth.png', ['KZK, Expt. Input, 30 mm Focus' nln 'Depth Plane'],...
               intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 3,...
               [47 56 65], [0 0.15 -.5 0]);
 
@@ -103,7 +104,7 @@ contourplots('kzk_30mm_depth.png', ['KZK, 30 mm Focus' nln 'Depth Plane'],...
 % was chosen because both KZK and Field II intensity fields were maximum at
 % 0.00 cm lateral position.
 figure(4);
-contourplots('kzk_30mm_lateral.png', ['KZK, 30 mm Focus' nln 'Lateral Plane'],...
+contourplots('kzk_30mm_lateral.png', ['KZK, Expt. Input, 30 mm Focus' nln 'Lateral Plane'],...
              intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 2,...
              [1 5 9], [-.51 0 0 5.2]);
 
@@ -112,7 +113,7 @@ contourplots('kzk_30mm_lateral.png', ['KZK, 30 mm Focus' nln 'Lateral Plane'],..
 % planes were chosen because KZK intensity field is maximum in -0.14 cm 
 % plane while the Field II intensity field is max in 0.00 cm plane.
 figure(5);
-contourplots('kzk_30mm_elevational.png', ['KZK, 30 mm Focus' nln 'Elevational Plane'],...
+contourplots('kzk_30mm_elevational.png', ['KZK, Expt. Input, 30 mm Focus' nln 'Elevational Plane'],...
              intensity_kzk_30mm, kzk_ele, kzk_lat, kzk_depth, 1,...
              [44 48 51], [0 .35 0 5.2]);  
 
@@ -137,3 +138,31 @@ figure(8);
 contourplots('field2_30mm_elevational.png', ['Field II, 30 mm Focus' nln 'Elevational Plane'],...
              intensity_field_30mm, field_ele, field_lat, field_depth, 1,...
              [44 48 51], [0 0.35 0 5.2])
+         
+%% KZK, Field II pressure input, contour plots 
+% contour plot in elevation-lateral plane at various depths
+% Depth planes in 2.3 cm, 2.75 cm, and 3.2 cm planes. These planes chosen
+% because KZK intensity field is maximum in 2.3 cm plane and Field II
+% intensity field is max in 3.2 cm plane.
+figure(9);
+contourplots('kzk_f2_input_30mm_depth.png', ['KZK, Field II Inputs, 30 mm Focus' nln 'Depth Plane'],...
+              intensity_kzk_finput_30mm, kzk_ele, kzk_lat, kzk_depth, 3,...
+              [47 56 65], [0 0.15 -.5 0]);
+
+% contour plot in depth-elevation plane at various lateral positions
+% Lateral planes are 0.00 cm, 0.08 cm, and 0.16 cm planes. 0.00 cm plane
+% was chosen because both KZK and Field II intensity fields were maximum at
+% 0.00 cm lateral position.
+figure(10);
+contourplots('kzk_f2_input_30mm_lateral.png', ['KZK, Field II Inputs, 30 mm Focus' nln 'Lateral Plane'],...
+             intensity_kzk_finput_30mm, kzk_ele, kzk_lat, kzk_depth, 2,...
+             [1 5 9], [-.51 0 0 5.2]);
+
+% contour plot in depth-lateral plane at various elevational positions
+% Elevational planes are -0.14 cm, -0.06 cm, and 0.00 cm planes. These 
+% planes were chosen because KZK intensity field is maximum in -0.14 cm 
+% plane while the Field II intensity field is max in 0.00 cm plane.
+figure(11);
+contourplots('kzk_f2_input_30mm_elevational.png', ['KZK, Field II Inputs, 30 mm Focus' nln 'Elevational Plane'],...
+             intensity_kzk_finput_30mm, kzk_ele, kzk_lat, kzk_depth, 1,...
+             [44 48 51], [0 .35 0 5.2]); 
