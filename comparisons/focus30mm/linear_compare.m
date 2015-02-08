@@ -24,7 +24,7 @@ fprintf(['The maximum intensity occurs at %.2f cm in elevation position, '...
          maxEle, maxLat, maxDepth)         
 fprintf('\n')
 
-% KZK
+% Linear KZK w/ Expt Measured Inputs
 fprintf('Linear KZK:\n')
 load /luscinia/nl91/scratch/c52/focus30mm/quarter_symmetric/c52_intensity_vals_30_qsymm_intensity.mat
 
@@ -50,11 +50,34 @@ fprintf(['The maximum intensity occurs at %.2f cm in elevation position, '...
          maxEle, maxLat, maxDepth)
 fprintf('\n')     
 
+% Linear KZK w/ Field II Pressure Input
+fprintf('Linear KZK:\n')
+load /luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm/...
+              c52_30mm_intensity_field_field_ii_pressure_input.mat
+          
+% remove first depth plane (not sure why there are 106 planes instead of 105... maybe bug???)
+intensity = intensity(1:end-1, :, :);
+          
+intensity_kzk_finput_30mm = permute(intensity, [3 2 1]);
+intensity_kzk_finput_30mm = intensity_kzk_30mm(1:length(kzk_ele), length(kzk_lat):end, :);
+intensity_kzk_finput_30mm = intensity_kzk_30mm ./ max(intensity_kzk_30mm(:));
+intensity_kzk_finput_30mm_depth = kzk_depth;
+
+% Calculating location of max intensity
+[maxEle, maxLat, maxDepth] = intensitypeak(intensity_kzk_finput_30mm, kzk_ele, ...
+                                           kzk_lat, kzk_depth);
+fprintf(['The maximum intensity occurs at %.2f cm in elevation position, '...
+         '%.2f cm in lateral position, and %.2f cm in depth position.\n'],...
+         maxEle, maxLat, maxDepth)
+fprintf('\n')     
+
 figure(1)
-subplot(2, 1, 1)
+subplot(3, 1, 1)
 imagesc(squeeze(intensity_field_30mm(end, :, :))')
-subplot(2, 1, 2)
+subplot(3, 1, 2)
 imagesc(squeeze(intensity_kzk_30mm(end, :, :))')
+subplot(3, 1, 3)
+imagesc(squeeze(intensity_kzk_finput_30mm(end, :, :))')
 
 %% center trace plot
 figure(2)
