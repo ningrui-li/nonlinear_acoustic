@@ -1,6 +1,6 @@
 clear; clf;
 
-addpath ../metrics/
+addpath ../../metrics/
 
 %% Field II and KZK (linear) sim comparisons - 30 mm focus
 
@@ -52,8 +52,8 @@ fprintf('\n')
 
 % Linear KZK w/ Field II Pressure Input
 fprintf('Linear KZK:\n')
-load /luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm/...
-              c52_30mm_intensity_field_field_ii_pressure_input.mat
+load(['/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm/'...
+              'c52_30mm_intensity_field_field_ii_pressure_input.mat'])
           
 % remove first depth plane (not sure why there are 106 planes instead of 105... maybe bug???)
 intensity = intensity(1:end-1, :, :);
