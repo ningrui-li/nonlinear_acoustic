@@ -173,6 +173,12 @@ end
 [eleGridInterp, latGridInterp] = ndgrid(ele, lat);
 depth_field = griddata(math_elem_pos(:, 2), math_elem_pos(:, 1), math_elem_pos(:, 3),...
                        eleGridInterp, latGridInterp, 'linear');
+% small correction here b/c griddata causes discontinuous z-values at
+% lateral positions of +/- 5.2 mm. Just interpolate using the +/- 5.0 mm
+% z-values. 
+depth_field(:, latMinIndex) = depth_field(:, latMinIndex+1);
+depth_field(:, latMaxIndex) = depth_field(:, latMaxIndex-1);
+
                    
 depth_field(isnan(depth_field)) = 0; % Set NaN vals to 0.
 depth_field = depth_field * 1e-3; % mm to m
