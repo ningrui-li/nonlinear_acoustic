@@ -1,14 +1,21 @@
 #!/bin/bash
 #$ -o sgetmp
 #$ -e sgetmp
+#$ -cwd
+#$ -l mem_free=6G
+#$ -l hostname=ginny
 #$ -r y
-#$ -l mem_free=1G
-#$ -pe smp 12
-#$ -R yes 
-#$ -cwd 
-#
+
+ulimit -v 6000000000
+ulimit -d 6000000000
+
 date
 hostname
 
 export DISPLAY=
 matlab -nojvm -nodisplay -r "try3d_kzk_sim"
+                                    
+qstat -j $JOB_ID
+
+date
+hostname
