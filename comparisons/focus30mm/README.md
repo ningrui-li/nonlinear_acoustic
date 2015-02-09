@@ -11,7 +11,9 @@ All intensity values for each simulation were normalized by dividing by the maxi
 ### Maximum Intensity
 The maximum intensity for the Field II sim occurred at 0.00 cm in elevation position, 0.00 cm in lateral position, and 3.20 cm in depth position.
 
-The maximum intensity for the linear KZK sim w/ expt. pressure inputs occured at -0.14 cm in elevation position, 0.00 cm in lateral position, and 2.30 cm in depth position. The same maximum intensity location was observed for the KZK sim run with the Field II synthesized pressure inputs.
+The maximum intensity for the linear KZK sim w/ expt. pressure inputs occured at -0.14 cm in elevation position, 0.00 cm in lateral position, and 2.30 cm in depth position. 
+
+The maximum intensity for the linear KZK sim w/ Field II synthesized pressure inputs occured at 0.00 cm in elevation position, 0.00 cm in lateral position, and 3.30 cm in depth position. 
 
 ### Center Trace Plot
 The center trace plot for the three sims can be seen below.
