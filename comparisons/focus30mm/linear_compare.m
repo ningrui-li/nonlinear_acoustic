@@ -59,8 +59,8 @@ load(['/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm/'...
 intensity = intensity(1:end-1, :, :);
           
 intensity_kzk_finput_30mm = permute(intensity, [3 2 1]);
-intensity_kzk_finput_30mm = intensity_kzk_30mm(1:length(kzk_ele), length(kzk_lat):end, :);
-intensity_kzk_finput_30mm = intensity_kzk_30mm ./ max(intensity_kzk_30mm(:));
+intensity_kzk_finput_30mm = intensity_kzk_finput_30mm(1:length(kzk_ele), length(kzk_lat):end, :);
+intensity_kzk_finput_30mm = intensity_kzk_finput_30mm ./ max(intensity_kzk_finput_30mm(:));
 intensity_kzk_finput_30mm_depth = kzk_depth;
 
 % Calculating location of max intensity
