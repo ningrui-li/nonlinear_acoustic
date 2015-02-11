@@ -55,8 +55,9 @@ fprintf('Linear KZK:\n')
 load(['/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm/'...
               'c52_30mm_intensity_field_field_ii_pressure_input.mat'])
           
-% remove first depth plane (not sure why there are 106 planes instead of 105... maybe bug???)
-intensity = intensity(1:end-1, :, :);
+% remove first depth plane (not sure why there are sometimes 106 depth
+% planes instead of 105... maybe bug???)
+% intensity = intensity(1:end-1, :, :);
           
 intensity_kzk_finput_30mm = permute(intensity, [3 2 1]);
 intensity_kzk_finput_30mm = intensity_kzk_finput_30mm(1:length(kzk_ele), length(kzk_lat):end, :);
