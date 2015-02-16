@@ -11,7 +11,9 @@ All intensity values for each simulation were normalized by dividing by the maxi
 ### Maximum Intensity
 The maximum intensity for the Field II sim occurred at 0.00 cm in elevation position, 0.14 cm in lateral position, and 3.75 cm in depth position.
 
-The maximum intensity for the linear KZK sim occured at 0.00 cm in elevation position, 0.00 cm in lateral position, and 6.40 cm in depth position.
+The maximum intensity for the linear KZK sim w/ expt. pressure inputs occured at 0.00 cm in elevation position, 0.00 cm in lateral position, and 6.40 cm in depth position.
+
+The maximum intensity for the linear KZK sim w/ Field II synthesized pressure inputs occured at 0.00 cm in elevation position, 0.00 cm in lateral position, and 5.50 cm in depth position. 
 
 ### Center Trace Plot
 The center trace plot for the two sims can be seen below.
@@ -30,9 +32,14 @@ Contour plot slices at elevational positions of -0.14 cm, -0.06 cm, and 0.00 cm 
 
 ![Elevational Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/field2_70mm_elevational.png)
 
- * KZK - Elevational Plane Contour Plots
+ * KZK, Expt. Inputs - Elevational Plane Contour Plots
 
-![Elevational Plane Contour Plots, Linear KZK Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_70mm_elevational.png)
+![Elevational Plane Contour Plots, Linear KZK Sim, Expt. Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_70mm_elevational.png)
+
+ * KZK, Field II Inputs - Elevational Plane Contour Plots
+
+![Elevational Plane Contour Plots, Linear KZK Sim, Field II Inputs, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_f2_input_70mm_elevational.png)
+
 
 ##### Lateral Planes
 Contour plot slices at lateral positions of 0.00 cm, 0.06 cm, and 0.14 cm can be found below. These planes were chosen because KZK intensity field is maximum in 0.00 cm lateral position plane and Field II intensity field is max in 0.14 cm plane.
@@ -41,9 +48,13 @@ Contour plot slices at lateral positions of 0.00 cm, 0.06 cm, and 0.14 cm can be
 
 ![Lateral Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/field2_70mm_lateral.png)
 
- * KZK - Lateral Plane Contour Plots
+ * KZK, Expt. Inputs - Lateral Plane Contour Plots
 
 ![Lateral Plane Contour Plots, Linear KZK Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_70mm_lateral.png)
+
+ * KZK, Field II Inputs - Lateral Plane Contour Plots
+
+![Lateral Plane Contour Plots, Linear KZK Sim, Field II Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_f2_input_70mm_lateral.png)
 
 ##### Depth Planes
 Contour plot slices at depth positions of 3.75 cm, 5.10 cm, and 6.40 cm can be found below. These planes were chosen because the KZK sim had maximum normalized intensity at a depth of 6.40 cm, while the Field II sim had maximum normalized intensity at a depth of 3.75 cm.
@@ -52,7 +63,10 @@ Contour plot slices at depth positions of 3.75 cm, 5.10 cm, and 6.40 cm can be f
 
 ![Depth Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/field2_70mm_depth.png)
 
- * KZK - Depth Plane Contour Plots
+ * KZK, Expt. Inputs - Depth Plane Contour Plots
 
 ![Depth Plane Contour Plots, Linear KZK Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_70mm_depth.png)
 
+ * KZK, Field II Inputs - Depth Plane Contour Plots
+
+![Depth Plane Contour Plots, Linear KZK Sim, Field II Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_f2_input_70mm_depth.png)
