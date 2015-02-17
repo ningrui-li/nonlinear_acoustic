@@ -155,31 +155,26 @@ eleMaxIndex = find(ele==maxElePosition);
 c52_time_delays = xdc_get(Th, 'focus'); % vector containing time delays of
                                         % each physical element
 c52_time_delays = c52_time_delays(2:end); % remove first index
-                                       
-c52_time_delays = round(c52_time_delays*FIELD_PARAMS.samplingFrequency); % convert from seconds to
-                                              % time indices
-                                              
-pressure_field_time_delays = zeros(length(lat), length(ele));
-latCenterIndex = round(length(lat)/2);
-eleRange = eleMinIndex:eleMaxIndex;
+c52_phys_elem_lat = phys_elem_pos(:, 1);
+c52_interp_lat_positions = lat(latMinIndex:latMaxIndex);
+c52_interp_time_delays = interp1(c52_phys_elem_lat, c52_time_delays,...
+                                 c52_interp_lat_positions, 'linear');
+                             
+% Hard-coding is bad, but I probably won't use this code again... :(
+c52_interp_time_delays(1) = c52_time_delays(1);
+c52_interp_time_delays(2) = c52_time_delays(1);
 
-for latInd = latMinIndex:latCenterIndex
-    if (latInd == latCenterIndex)
-        timeDelayCenterIndex = floor(length(c52_time_delays)/2);
-        latTimeDelay = round(mean(c52_time_delays(timeDelayCenterIndex:timeDelayCenterIndex+1)));
-        pressure_field_time_delays(latInd, eleRange) = ones(1,length(eleRange))*...
-                                                       latTimeDelay;
-    else
-        latTimeDelayInd = round((latInd-latMinIndex+1)/2);
-        latTimeDelay = c52_time_delays(latTimeDelayInd);
-        pressure_field_time_delays(latInd, eleRange) = ones(1, length(eleRange))*...
-                                                        latTimeDelay;
-        % Also calculate time delay for other side of plane, since delays
-        % are symmetric across elevational axis.
-        symmLatInd = length(lat)+1-latInd;
-        pressure_field_time_delays(symmLatInd, eleRange) = ones(1, length(eleRange))*...
-                                                           latTimeDelay;
-    end
+c52_interp_time_delays(end) = c52_time_delays(end);
+c52_interp_time_delays(end-1) = c52_time_delays(end);
+
+% convert from seconds to time indices
+c52_interp_time_delays = round(c52_interp_time_delays*FIELD_PARAMS.samplingFrequency);
+                                              
+% apply time delays across pressure input matrix
+pressure_field_time_delays = zeros(length(lat), length(ele));
+eleRange = eleMinIndex:eleMaxIndex;
+for latIndex = latMinIndex:latMaxIndex
+    pressure_field_time_delays(latIndex, eleRange) = c52_interp_time_delays(latIndex-latMinIndex+1);
 end
 
 %% interpolating intensity values to correspond to a mesh of uniform size
