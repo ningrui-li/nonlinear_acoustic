@@ -1,0 +1,24 @@
+
+#!/bin/bash
+#$ -o sgetmp
+#$ -e sgetmp
+#$ -cwd
+#$ -l mem_free=8G
+#$ -l hostname=krum
+#$ -r y
+
+ulimit -v 8388608
+ulimit -d 8388608
+
+date
+hostname
+
+qstat -j $JOB_ID
+
+export DISPLAY=
+matlab -nojvm -nodisplay -r "try3d_kzk_sim"
+                                    
+qstat -j $JOB_ID
+
+date
+hostname

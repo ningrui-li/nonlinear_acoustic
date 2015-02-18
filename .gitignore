@@ -8,3 +8,7 @@
 
 # 3D KZK Sim Code
 try3d_kzk_sim.m
+
+# sge output files
+*sge.o*
+*sge.e*

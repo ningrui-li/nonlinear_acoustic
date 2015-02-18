@@ -1,0 +1,22 @@
+#!/bin/bash
+#$ -o sgetmp
+#$ -e sgetmp
+#$ -cwd
+#$ -l mem_free=6G
+#$ -r y
+
+ulimit -v 6291456
+ulimit -d 6291456
+
+date
+hostname
+
+qstat -j $JOB_ID
+
+export DISPLAY=
+matlab -nojvm -nodisplay -r "try3d_kzk_sim; clear; calcIntensityField;"
+                                    
+qstat -j $JOB_ID
+
+date
+hostname
