@@ -232,7 +232,7 @@ end
 pressure = pressure_field_ii;
 
 % save data
-save field_ii_c52_30mm_pressure_input.mat ele lat t pressure
+%save field_ii_c52_30mm_pressure_input.mat ele lat t pressure
 
 %% Time delay plots
 figure(3)
