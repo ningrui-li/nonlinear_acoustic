@@ -1,6 +1,10 @@
 # Data files
 *.dyn
 *.mat
+*.dat
 
 # Temporary files
 *~
+
+# 3D KZK Sim Code
+try3d_kzk_sim.m
