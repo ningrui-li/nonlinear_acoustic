@@ -1,5 +1,6 @@
 clear; clf;
 
+nln = 10; % ASCII value for new line
 addpath ../../../metrics
 
 % Linear KZK
@@ -57,3 +58,55 @@ figure(2)
 centertrace('kzk_diff_B_centertrace_c52_30mm.png', 'KZK Sim Center Traces - C5-2, 30 mm Focus',...
             intensity_kzk_B0_30mm, kzk_depth, 'KZK Sim - $\beta=0$',...
             intensity_kzk_B35_30mm, kzk_depth, 'KZK Sim - $\beta=3.5$)')
+        
+%% KZK, B = 0 contour plots
+% contour plot in elevation-lateral plane at various depths
+% Depth planes in 3.0 cm, 3.2 cm, and 3.4 cm planes. These planes were chosen
+% because both intensity fields were maximum in 3.2 cm depth plane.
+figure(3);
+contourplots('kzk_B0_30mm_depth.png', ['KZK Sim' nln '30 mm Focus, \beta=0' nln 'Depth Plane'],...
+              intensity_kzk_B0_30mm, kzk_ele, kzk_lat, kzk_depth, 3,...
+              [60 65 70], [0 0.15 -.5 0]);
+
+% contour plot in depth-elevation plane at various lateral positions
+% Lateral planes are 0.00 cm, 0.08 cm, and 0.16 cm planes. 0.00 cm plane
+% was chosen because both intensity fields were maximum at
+% 0.00 cm lateral position.
+figure(4);
+contourplots('kzk_B0_30mm_lateral.png', ['KZK Sim' nln '30 mm Focus, \beta=0' nln 'Lateral Plane'],...
+             intensity_kzk_B0_30mm, kzk_ele, kzk_lat, kzk_depth, 2,...
+             [1 5 9], [-.51 0 0 5.2]);
+
+% contour plot in depth-lateral plane at various elevational positions
+% Elevational planes are -0.22 cm, -0.12 cm, and 0.00 cm planes. These 
+% planes were chosen because both intensity fields were max in 0.00 cm plane.
+figure(5);
+contourplots('kzk_B0_30mm_elevational.png', ['KZK Sim' nln '30 mm Focus, \beta=0' nln 'Elevational Plane'],...
+             intensity_kzk_B0_30mm, kzk_ele, kzk_lat, kzk_depth, 1,...
+             [40 45 51], [0 .35 0 5.2]); 
+         
+%% KZK, B = 3.5 contour plots
+% contour plot in elevation-lateral plane at various depths
+% Depth planes in 3.0 cm, 3.2 cm, and 3.4 cm planes. These planes were chosen
+% because both intensity fields were maximum in 3.2 cm depth plane.
+figure(6);
+contourplots('kzk_B35_30mm_depth.png', ['KZK Sim' nln '30 mm Focus, \beta=3.5' nln 'Depth Plane'],...
+              intensity_kzk_B35_30mm, kzk_ele, kzk_lat, kzk_depth, 3,...
+              [60 65 70], [0 0.15 -.5 0]);
+
+% contour plot in depth-elevation plane at various lateral positions
+% Lateral planes are 0.00 cm, 0.08 cm, and 0.16 cm planes. 0.00 cm plane
+% was chosen because both intensity fields were maximum at
+% 0.00 cm lateral position.
+figure(7);
+contourplots('kzk_B35_30mm_lateral.png', ['KZK Sim' nln '30 mm Focus, \beta=3.5' nln 'Lateral Plane'],...
+             intensity_kzk_B35_30mm, kzk_ele, kzk_lat, kzk_depth, 2,...
+             [1 5 9], [-.51 0 0 5.2]);
+
+% contour plot in depth-lateral plane at various elevational positions
+% Elevational planes are -0.22 cm, -0.12 cm, and 0.00 cm planes. These 
+% planes were chosen because both intensity fields were max in 0.00 cm plane.
+figure(8);
+contourplots('kzk_B35_30mm_elevational.png', ['KZK Sim' nln '30 mm Focus, \beta=3.5' nln 'Elevational Plane'],...
+             intensity_kzk_B35_30mm, kzk_ele, kzk_lat, kzk_depth, 1,...
+             [40 45 51], [0 .35 0 5.2]); 
