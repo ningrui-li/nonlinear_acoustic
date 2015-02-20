@@ -64,3 +64,17 @@ Contour plot slices at depth positions of 3.00 cm, 3.20 cm, and 3.40 cm can be f
 
 ![Depth Plane Contour Plots, KZK Sim, β = 3.5, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B0_30mm_depth.png)
 
+### Differences Plots
+The two intensity field matrices were subtracted from each other (β = 3.5 field - β = 0 field), and plots were made of the resulting difference matrix in the depth and lateral planes.
+
+ * KZK, Difference Plot, - Depth Plane
+
+![Depth Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B_diffplot_30mm_depth.png)
+
+These depth plane plots show the greatest difference in intensities at an location that is about 0.13 cm elevationally offset from the center of the plane. However, the magnitude of the differences is on the order of 10^-7. This seems extremely small, considering that both intensity fields were normalized before being subtracted from each other.
+
+ * KZK, Difference Plot, - Lateral Plane
+
+![Lateral Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B_diffplot_30mm_lateral.png)
+
+These lateral plane plots show the greatest difference in intensities at an location that is also about 0.13 cm elevationally offset from the center of the plane at a depth of around 2.3 cm. Once again, the magnitude of the differences is on the order of 10^-7.
