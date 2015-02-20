@@ -86,7 +86,7 @@ legendTitles = '';
 for i = 1:intensityPlotCount
     legendTitles = [legendTitles '''' varargin{3*(i-1)+3}  ''', '];
 end
-eval(sprintf('legend(%s 0)', legendTitles))
-
+eval(sprintf('h = legend(%s 0)', legendTitles))
+set(h, 'interpreter', 'latex');
 eval(sprintf('print -dpng %s', OutputName'))
 end
