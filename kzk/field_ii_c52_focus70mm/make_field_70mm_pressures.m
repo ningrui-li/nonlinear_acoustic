@@ -53,6 +53,11 @@ t_c52_imp_resp = (1:length(c52_imp_resp)) * (1/FIELD_PARAMS.samplingFrequency);
 
 % Get pressure waveform by convolving excitation wave w/ imp response
 pwave = conv(excitation, c52_imp_resp);
+
+% normalize to experimentally measured pressure wave amplitude
+expt_wave_amp = 4e5;
+pwave = expt_wave_amp*(pwave ./ max(pwave));
+
 t_pwave = (1:length(pwave)) * (1/FIELD_PARAMS.samplingFrequency);
 
 %% Plot excitation wave + impulse response for error-checking
