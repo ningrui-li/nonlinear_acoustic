@@ -14,6 +14,8 @@ function [] = create_vtk(intensity, lat, ele, depth, vtsFile)
 lat = lat/10;
 ele = ele/10;
 depth = depth/10;
+% normalize
+intensity = intensity / max(intensity(:)); 
 % Generating node and element files
 system(sprintf(['python /luscinia/nl91/matlab/fem/mesh/GenMesh.py ',...
                 '--numElem %d %d %d --xyz %.1f %.1f %.1f %.1f %.1f %.1f'],...
