@@ -7,8 +7,10 @@ The code used to run the 30 mm KZK sim with α = 0.45 dB/cm/MHz and β = 0 can b
 
 The code used to run the 30 mm KZK sim with α = 0.45 dB/cm/MHz and β = 3.5 can be found in `/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm/B_3.5/a_0.45_B_3.5`. `c52_30mm_intensity_field_ii_pressure_input_beta_3.5.mat` contains the intensity field data.
 
+The code used to run the 30 mm KZK sim with α = 0.45 dB/cm/MHz and β = 7 can be found in `/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm/B_7/a_0.45_B_7`. `c52_30mm_intensity_field_ii_pressure_input_beta_7.mat` contains the intensity field data.
+
 #### Methods
-Two different 3D KZK simulations (`try3d_kzk_sim.m`) were run using the same Field II synthesized initial pressure input data (see `/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm`) as well as the same attenuation coefficent of α = 0.45 dB/cm/MHz. However, one simulation was run in linear mode with β = 0 while the other one was run with β = 3.5. Each intensity field was normalized and cut into quarters, since the intensity field had quarter-symmetry due to the input Field II synthesized pressures also having quarter symmetry.
+Three different 3D KZK simulations (`try3d_kzk_sim.m`) were run using the same Field II synthesized initial pressure input data (see `/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus30mm`) as well as the same attenuation coefficent of α = 0.45 dB/cm/MHz. However, one sim was run in linear mode with β = 0, another was run with β = 3.5, and the last was with β = 7. Each intensity field was normalized and cut into quarters, since the intensity field had quarter-symmetry due to the input Field II synthesized pressures also having quarter symmetry.
 
 #### Results
 ### Maximum Intensity
@@ -16,7 +18,9 @@ Both intensity fields appeared to be fairly similar.
 
 The location of maximum intensity for the β = 0 sim was at 0.00 cm in elevation position, 0.00 cm in lateral position, and 3.20 cm in depth position. 
 
-The location of maximum intensity for the β = 3.5 sim was at 0.00 cm in elevation position, 0.00 cm in lateral position, and 3.20 cm in depth position, so both intensity fields had the same max intensity location.
+The location of maximum intensity for the β = 3.5 sim was at 0.00 cm in elevation position, 0.00 cm in lateral position, and 3.25 cm in depth position, so both intensity fields had the same max intensity location.
+
+The location of maximum intensity for the β = 3.5 sim was at 0.00 cm in elevation position, 0.00 cm in lateral position, and 3.25 cm in depth position, so both intensity fields had the same max intensity location.
 
 ### Center Trace Plot
 The center trace plot for the two sims can be seen below.
@@ -33,48 +37,74 @@ Unfortunately, the contour plots also look fairly similar, so they don't provide
 ##### Elevational Planes
 Contour plot slices at elevational positions of -0.22 cm, -0.12 cm, and 0.00 cm can be found below.
 
- * KZK, Expt. Inputs - Elevational Plane Contour Plots
+ * KZK, β = 0 - Elevational Plane Contour Plots
 
 ![Elevational Plane Contour Plots, KZK Sim, β = 0, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B0_30mm_elevational.png)
 
- * KZK, Field II Inputs - Elevational Plane Contour Plots
+ * KZK, β = 3.5 - Elevational Plane Contour Plots
 
 ![Elevational Plane Contour Plots, KZK Sim, β = 3.5, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B35_30mm_elevational.png)
+
+ * KZK, β = 7 - Elevational Plane Contour Plots
+
+![Elevational Plane Contour Plots, KZK Sim, β = 7, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B7_30mm_elevational.png)
 
 
 ##### Lateral Planes
 Contour plot slices at lateral positions of 0.00 cm, 0.08 cm, and 0.16 cm can be found below. 
 
- * KZK, Expt. Inputs - Lateral Plane Contour Plots
+ * KZK, β = 0 - Lateral Plane Contour Plots
 
 ![Lateral Plane Contour Plots, KZK Sim, β = 0, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B0_30mm_lateral.png)
 
- * KZK, Field II Inputs - Lateral Plane Contour Plots
+ * KZK, β = 3.5 - Lateral Plane Contour Plots
 
-![Lateral Plane Contour Plots, KZK Sim, β = 3.5, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B0_30mm_lateral.png)
+![Lateral Plane Contour Plots, KZK Sim, β = 3.5, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B3.5_30mm_lateral.png)
+
+ * KZK, β = 7 - Lateral Plane Contour Plots
+
+![Lateral Plane Contour Plots, KZK Sim, β = 7, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B7_30mm_lateral.png)
 
 ##### Depth Planes
 Contour plot slices at depth positions of 3.00 cm, 3.20 cm, and 3.40 cm can be found below.
 
- * KZK, Expt. Inputs - Depth Plane Contour Plots
+ * KZK, β = 0 - Depth Plane Contour Plots
 
 ![Depth Plane Contour Plots, KZK Sim, β = 0, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B0_30mm_depth.png)
 
- * KZK, Field II Inputs - Depth Plane Contour Plots
+ * KZK, β = 3.5 - Depth Plane Contour Plots
 
-![Depth Plane Contour Plots, KZK Sim, β = 3.5, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B0_30mm_depth.png)
+![Depth Plane Contour Plots, KZK Sim, β = 3.5, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B35_30mm_depth.png)
+
+ * KZK, β = 7 - Depth Plane Contour Plots
+
+![Depth Plane Contour Plots, KZK Sim, β = 7, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B7_30mm_depth.png)
 
 ### Differences Plots
+## Linear vs. β = 3.5
 The two intensity field matrices were subtracted from each other (β = 3.5 field - β = 0 field), and plots were made of the resulting difference matrix in the depth and lateral planes.
 
  * KZK, Difference Plot, - Depth Plane
 
-![Depth Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B_diffplot_30mm_depth.png)
+![Depth Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B35_diffplot_30mm_depth.png)
 
-These depth plane plots show the greatest difference in intensities at an location that is about 0.13 cm elevationally offset from the center of the plane. However, the magnitude of the differences is on the order of 10^-7. This seems extremely small, considering that both intensity fields were normalized before being subtracted from each other.
+These depth plane plots show the greatest difference in intensities at an location that is about 0.13 cm elevationally offset from the center of the plane. 
 
  * KZK, Difference Plot, - Lateral Plane
 
-![Lateral Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B_diffplot_30mm_lateral.png)
+![Lateral Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B35_diffplot_30mm_lateral.png)
 
-These lateral plane plots show the greatest difference in intensities at an location that is also about 0.13 cm elevationally offset from the center of the plane at a depth of around 2.3 cm. Once again, the magnitude of the differences is on the order of 10^-7.
+These lateral plane plots show the greatest difference in intensities at an location that is also about 0.13 cm elevationally offset from the center of the plane at a depth of around 2.3 cm.
+
+## Linear vs. β = 7
+The above was done to compare the linear simulation with the β = 7 simulation.
+
+ * KZK, Difference Plot, - Depth Plane
+
+![Depth Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B7_diffplot_30mm_depth.png)
+
+
+ * KZK, Difference Plot, - Lateral Plane
+
+![Lateral Plane Difference Plots, KZK Sim, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus30mm/B_compare/kzk_B7_diffplot_30mm_lateral.png)
+
