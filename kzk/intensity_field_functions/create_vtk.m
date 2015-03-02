@@ -1,4 +1,4 @@
-function [] = create_vtk(intensity, lat, ele, depth, vtsFile)
+function [] = create_vtk(intensity, lat, ele, depth, vtsFile, debug)
 % create_vtk - Creates VTK file of intensity field
 % INPUTS:
 % intensity - 3D intensity field matrix with dimensions depth x lateral x
@@ -7,8 +7,14 @@ function [] = create_vtk(intensity, lat, ele, depth, vtsFile)
 % ele - vector with elevational positions
 % depth - vector with depth positions
 % vtkFile - name of output .vts file (ex. 'c52_30mm_intensity.vts')
+% debug - if 1 -> does not delete intermediate nodes, elems, intensity
+% files so that they can be used for debugging. (default: 0)
 % OUTPUT:
 % vtkFile created in CWD.
+
+if nargin < 6
+    debug = 0;
+end
 
 % mm to cm
 lat = lat/10;
@@ -16,6 +22,7 @@ ele = ele/10;
 depth = depth/10;
 % normalize
 intensity = intensity / max(intensity(:)); 
+
 % Generating node and element files
 system(sprintf(['python /luscinia/nl91/matlab/fem/mesh/GenMesh.py ',...
                 '--numElem %d %d %d --xyz %.1f %.1f %.1f %.1f %.1f %.1f'],...
@@ -46,4 +53,10 @@ system(sprintf(['python /luscinia/nl91/matlab/fem/post/', ...
                 '--loadfile %s --loadout %s'], ...
                 intensityFile, vtsFile));
             
+if debug ~= 1
+    % remove nodes.dyn and elems.dyn
+    system('rm nodes.dyn');
+    system('rm elems.dyn');
+    system(sprintf('rm %s', intensityFile));
+end
 end
