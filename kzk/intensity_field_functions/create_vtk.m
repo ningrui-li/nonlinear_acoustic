@@ -32,7 +32,7 @@ system(sprintf(['python /luscinia/nl91/matlab/fem/mesh/GenMesh.py ',...
 
 % Writing pseudo-pointloads file to use as input to
 % create_pointloads_vtk.py.
-intensityFile = [cell2mat(strsplit(vtsFile, '.')) '_intensity.txt'];
+intensityFile = [vtsFile '.txt'];
 sprintf('Writing intensity values to %s...\n', intensityFile)
 fid = fopen(intensityFile, 'w');
 nodeid = 1;
@@ -52,7 +52,7 @@ system(sprintf(['python /luscinia/nl91/matlab/fem/post/', ...
                 'create_pointloads_vtk.py --nodefile nodes.dyn ', ...
                 '--loadfile %s --loadout %s'], ...
                 intensityFile, vtsFile));
-            
+
 if debug ~= 1
     % remove nodes.dyn and elems.dyn
     system('rm nodes.dyn');
