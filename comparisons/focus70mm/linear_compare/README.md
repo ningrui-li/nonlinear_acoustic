@@ -18,7 +18,7 @@ The maximum intensity for the linear KZK sim w/ Field II synthesized pressure in
 ### Center Trace Plot
 The center trace plot for the two sims can be seen below.
 
-![Center Trace Plot, Linear KZK and Field II Sims, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/field_kzk_centertrace_c52_70mm.png)
+![Center Trace Plot, Linear KZK and Field II Sims, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/field_kzk_centertrace_c52_70mm.png)
 
 The intensity was plotted with respect to depth for each sim along the 0 cm lateral position and 0 cm elevational position axis. The intensity was then re-normalized along this axis.
 
@@ -30,15 +30,15 @@ Contour plot slices at elevational positions of -0.14 cm, -0.06 cm, and 0.00 cm 
 
  * Field II - Elevational Plane Contour Plots
 
-![Elevational Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/field2_70mm_elevational.png)
+![Elevational Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/field2_70mm_elevational.png)
 
  * KZK, Expt. Inputs - Elevational Plane Contour Plots
 
-![Elevational Plane Contour Plots, Linear KZK Sim, Expt. Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_70mm_elevational.png)
+![Elevational Plane Contour Plots, Linear KZK Sim, Expt. Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/kzk_70mm_elevational.png)
 
  * KZK, Field II Inputs - Elevational Plane Contour Plots
 
-![Elevational Plane Contour Plots, Linear KZK Sim, Field II Inputs, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_f2_input_70mm_elevational.png)
+![Elevational Plane Contour Plots, Linear KZK Sim, Field II Inputs, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/kzk_f2_input_70mm_elevational.png)
 
 
 ##### Lateral Planes
@@ -46,27 +46,27 @@ Contour plot slices at lateral positions of 0.00 cm, 0.06 cm, and 0.14 cm can be
 
  * Field II - Lateral Plane Contour Plots
 
-![Lateral Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/field2_70mm_lateral.png)
+![Lateral Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/field2_70mm_lateral.png)
 
  * KZK, Expt. Inputs - Lateral Plane Contour Plots
 
-![Lateral Plane Contour Plots, Linear KZK Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_70mm_lateral.png)
+![Lateral Plane Contour Plots, Linear KZK Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/kzk_70mm_lateral.png)
 
  * KZK, Field II Inputs - Lateral Plane Contour Plots
 
-![Lateral Plane Contour Plots, Linear KZK Sim, Field II Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_f2_input_70mm_lateral.png)
+![Lateral Plane Contour Plots, Linear KZK Sim, Field II Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/kzk_f2_input_70mm_lateral.png)
 
 ##### Depth Planes
 Contour plot slices at depth positions of 3.75 cm, 5.10 cm, and 6.40 cm can be found below. These planes were chosen because the KZK sim had maximum normalized intensity at a depth of 6.40 cm, while the Field II sim had maximum normalized intensity at a depth of 3.75 cm.
 
  * Field II - Depth Plane Contour Plots
 
-![Depth Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/field2_70mm_depth.png)
+![Depth Plane Contour Plots, Field II Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/field2_70mm_depth.png)
 
  * KZK, Expt. Inputs - Depth Plane Contour Plots
 
-![Depth Plane Contour Plots, Linear KZK Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_70mm_depth.png)
+![Depth Plane Contour Plots, Linear KZK Sim, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/kzk_70mm_depth.png)
 
  * KZK, Field II Inputs - Depth Plane Contour Plots
 
-![Depth Plane Contour Plots, Linear KZK Sim, Field II Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/kzk_f2_input_70mm_depth.png)
+![Depth Plane Contour Plots, Linear KZK Sim, Field II Inputs, 70 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/kzk_f2_input_70mm_depth.png)
