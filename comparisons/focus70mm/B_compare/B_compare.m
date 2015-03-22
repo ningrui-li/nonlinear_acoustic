@@ -6,7 +6,7 @@ addpath ../../../metrics
 % Linear KZK
 fprintf('Linear KZK:\n')
 load(['/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus70mm/B_0/',...
-     'a_0.45_B_0/c52_70mm_intensity_field_ii_pressure_input.mat']);
+     'a_2.5_B_0/c52_70mm_intensity_field_field_ii_pressure_input.mat']);
 
 % cut data to just quarter of all values, since it is quarter symmetric
 kzk_ele = ele(1:(floor(length(ele)/2)+1));
@@ -33,7 +33,7 @@ fprintf('\n')
 % KZK, B = 3.5
 fprintf('KZK, B = 3.5:\n')
 load(['/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus70mm/B_3.5/',...
-      'a_0.45_B_3.5/c52_70mm_intensity_field_ii_pressure_input.mat'])
+      'a_2.5_B_3.5/c52_70mm_intensity_field_field_ii_pressure_input.mat'])
                  
 intensity_kzk_B35_70mm = permute(intensity, [3 2 1]);
 intensity_kzk_B35_70mm = intensity_kzk_B35_70mm(1:length(kzk_ele), length(kzk_lat):end, :);
@@ -50,7 +50,7 @@ fprintf('\n')
 % KZK, B = 7
 fprintf('KZK, B = 7:\n')
 load(['/luscinia/nl91/nonlinear_acoustic/kzk/field_ii_c52_focus70mm/B_7/'...
-      'a_0.45_B_7/c52_70mm_intensity_field_ii_pressure_input.mat'])
+      'a_2.5_B_7/c52_70mm_intensity_field_field_ii_pressure_input.mat'])
                  
 intensity_kzk_B7_70mm = permute(intensity, [3 2 1]);
 intensity_kzk_B7_70mm = intensity_kzk_B7_70mm(1:length(kzk_ele), length(kzk_lat):end, :);
