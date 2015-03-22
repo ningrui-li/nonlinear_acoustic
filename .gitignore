@@ -2,6 +2,7 @@
 *.dyn
 *.mat
 *.dat
+*.vts
 
 # Temporary files
 *~
