@@ -1,6 +1,6 @@
 clear; clf;
 
-addpath ../../metrics/
+addpath ../../../metrics/
 
 %% Field II and KZK (linear) sim comparisons - 70 mm focus
 
