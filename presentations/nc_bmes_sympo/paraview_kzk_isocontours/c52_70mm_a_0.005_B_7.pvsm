@@ -1247,7 +1247,7 @@
         <Domain name="range" id="4667.NonlinearSubdivisionLevel.range"/>
       </Property>
       <Property name="Opacity" id="4667.Opacity" number_of_elements="1">
-        <Element index="0" value="0.19"/>
+        <Element index="0" value="0.2"/>
         <Domain name="range" id="4667.Opacity.range"/>
       </Property>
       <Property name="Orient" id="4667.Orient" number_of_elements="1">
