@@ -30,8 +30,8 @@ pout = pout*1e-6; % Pa to MPa
 figure(1)
 plot(t, squeeze(pout(:, round(numLatSteps/2), round(numEleSteps/2))), 'k-')
 axis([7 9 min(pout(:)) max(pout(:))])
-xlabel('Time (\mus)')
-ylabel('Pressure (MPa)')
-title(['Nonlinear Acoustic Wave (\alpha = 0.3 dB/cm/MHz, \beta = 3.5)'])
+xlabel('Time (\mus)', 'FontSize', 14)
+ylabel('Pressure (MPa)', 'FontSize', 14)
+title(['Nonlinear Acoustic Wave (\alpha = 0.3 dB/cm/MHz, \beta = 3.5)'], 'FontSize', 14)
 
 print -dpng nonlinear_wave_through_time.png
