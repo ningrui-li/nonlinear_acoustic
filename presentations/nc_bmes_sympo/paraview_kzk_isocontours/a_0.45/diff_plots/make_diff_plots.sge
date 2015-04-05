@@ -1,0 +1,19 @@
+
+#!/bin/bash
+#$ -o sgetmp
+#$ -e sgetmp
+#$ -cwd
+#$ -l mem_free=4G
+#$ -r y
+
+date
+hostname
+
+qstat -j $JOB_ID
+
+export DISPLAY=
+matlab -nojvm -nodisplay -r "a_compare_045"
+
+qstat -j $JOB_ID
+
+                                                 
