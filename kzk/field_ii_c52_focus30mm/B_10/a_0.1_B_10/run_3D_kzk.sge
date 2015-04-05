@@ -1,0 +1,20 @@
+#!/bin/bash
+#$ -o sgetmp
+#$ -e sgetmp
+#$ -cwd
+#$ -l mem_free=4G
+#$ -l hostname=krum
+#$ -r y
+
+date
+hostname
+
+qstat -j $JOB_ID
+
+export DISPLAY=
+matlab -nojvm -nodisplay -r "try3d_kzk_sim; clear; calcIntensityField;"
+                                    
+qstat -j $JOB_ID
+
+date
+hostname
