@@ -66,7 +66,7 @@ for i = 1:intensityPlotCount
     lineColorIndex = mod(i-1, length(plottingLineColors)) + 1;
     lineStyle = plottingLineStyles{lineStyleIndex};
     lineColor = plottingLineColors{lineColorIndex};
-    plot(depth, intensityAlongCenterTrace, char([lineColor lineStyle]))
+    plot(depth, intensityAlongCenterTrace, char([lineColor lineStyle]), 'LineWidth', 2)
     
     if i == 1
         hold on
@@ -75,9 +75,9 @@ end
 semilogy(varargin{2}, .5*ones(size(varargin{2})), 'k:')
 hold off
 
-title(PlotTitle)
-xlabel('Depth (cm)')
-ylabel('Normalized Intensity')
+title(PlotTitle, 'FontSize', 22)
+xlabel('Depth (cm)', 'FontSize', 20)
+ylabel('Normalized Intensity', 'FontSize', 20)
 % Axis settings assume depth values are extremely similar between plotted 
 % intensity data sets. Also assumes intensity values are correctly normalized
 % to be between 0 and 1.
@@ -88,5 +88,8 @@ for i = 1:intensityPlotCount
 end
 eval(sprintf('h = legend(%s 0)', legendTitles))
 set(h, 'interpreter', 'latex');
+set(h, 'FontSize', 12);
 eval(sprintf('print -dpng %s', OutputName'))
+
+
 end
