@@ -9,17 +9,20 @@ The KZK intensity fields generated from the quarter symmetric inputs will be the
 ## Experimentally Measured Face Pressure Field Processing
 The `face_pressure` folder contains code used to process the experimentally measured input pressure fields before using them as inputs to the KZK simulation.
 
-## KZK Simulations
-The `kzk` folder contains code used to synthesize Field II face pressure inputs for the KZK sim as well as scripts used to run the KZK sims.
-
 ## Field II Comparison Simulation
 The `field` folder contains the code used to run the Field II simulations for comparison to the KZK simulations that were run in linear mode (β = 0).
+
+## KZK Simulations
+The `kzk` folder contains code used to synthesize Field II face pressure inputs for the KZK sim as well as scripts used to run the KZK sims.
 
 ## Metrics
 The `metrics` folder contains MATLAB functions for creating various plots of each intensity field that allow comparison between Field II and/or KZK simulation results.
 
 ## Comparisons
 The `comparisons` folder contains the scripts used to load and compare the intensity data for the Field II and KZK sims. Differences in intensity fields generated from running the KZK sim using different attenuation and nonlinearity parameters are also evaluated. The functions from `metrics` will be used to compare these intensity fields.
+
+## LS-DYNA Shear Wave Simulations
+The `dyna` folder contains scripts used to simulate the shear waves created by the intensity fields simulated by the Field II and the KZK code.
 
 ## Presentations
 The `presentations` folder contains various posters and slides made using these simulation results.
