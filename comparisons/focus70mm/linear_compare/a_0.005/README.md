@@ -38,7 +38,7 @@ Contour plot slices at elevational positions of -0.14 cm, -0.06 cm, and 0.00 cm 
 
  * KZK, Field II Inputs - Elevational Plane Contour Plots
 
-![Elevational Plane Contour Plots, Linear KZK Sim, Field II Inputs, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/a_0.005/focus70mm/linear_compare/kzk_f2_input_70mm_elevational.png)
+![Elevational Plane Contour Plots, Linear KZK Sim, Field II Inputs, 30 mm Focus](https://raw.githubusercontent.com/Ningrui-Li/nonlinear_acoustic/master/comparisons/focus70mm/linear_compare/a_0.005/kzk_f2_input_70mm_elevational.png)
 
 
 ##### Lateral Planes
