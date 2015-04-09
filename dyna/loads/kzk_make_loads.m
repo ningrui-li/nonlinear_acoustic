@@ -1,4 +1,11 @@
-clear; clf;
+function [] = kzk_make_loads(intensityFile, eleVol)
+%%
+% Function for inputting parameters to makeLoadsTemps from KZK simulated
+% intensity fields.
+% INPUTS:
+% intensityFile - location and name of intensity file formatted like the
+% output of field2dyna.m
+% eleVol - volume of each element (cm^3)
 
 %% load data stuff. add path stuff.
 addpath /luscinia/nl91/matlab/fem/field
@@ -21,9 +28,6 @@ pulseDuration = 20; % microseconds
 % http://en.wikipedia.org/wiki/Heat_capacity#Table_of_specific_heat_capacities
 cv = 4.1760;        % (J/cm^3/C)   
 
-% element volume (cm^3)
-% from same data as pulseDuration
-eleVol = .2*.2*.5;  % cm^3
 %% call to makeLoadsTemps
 makeLoadsTemps(intensityFile, intensityFile, IsppaNorm, pulseDuration,...
-               cv, eleVol, 'h', 1);
+               cv, eleVol, 'q', 1);
