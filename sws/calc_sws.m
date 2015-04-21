@@ -28,15 +28,6 @@ for later = lat_start:lat_end
     ttp(later-lat_start+1) = t(find(displacements == max(displacements(:)), 1));
 end
 
-figure
-plot(ttp*1e3, lat, 'k-') % note conversion from s to ms for time to peak
-
-xlabel('Time to Peak (ms)', 'FontSize', 14)
-ylabel('Lateral Tracking Position (mm)', 'FontSize', 14)
-title(sprintf(['SWS Estimation at Depth of %.1f mm', nln, ...
-               '(\\alpha=%.3f dB/cm/MHz, \\beta=%.1f)'],...
-               axial(depth), alpha, beta), 'FontSize', 18)
-
 % convert from mm to m
 lat = lat * 1e-3;
            
@@ -44,5 +35,15 @@ linear_regression = polyfit(ttp, lat, 1);
 sws = linear_regression(1);
 
 if printPlot
+    figure
+    plot(ttp*1e3, lat, 'k-') % note conversion from s to ms for time to peak
+    xlabel('Time to Peak (ms)', 'FontSize', 14)
+    ylabel('Lateral Tracking Position (mm)', 'FontSize', 14)
+    title(sprintf(['SWS Estimation at Depth of %.1f mm', nln, ...
+                   '(\\alpha=%.3f dB/cm/MHz, \\beta=%.1f)'],...
+                   axial(depth), alpha, beta), 'FontSize', 18)
+               
     eval(sprintf('print -dpng sws_ttp_a%.3f_B%.1f_depth%.1f.png', alpha, beta, axial(depth)))
 end
+
+
