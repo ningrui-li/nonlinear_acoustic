@@ -1,4 +1,8 @@
 function [sws] = calc_sws(alpha, beta, depth)
+%% calc_sws.m
+% Estimates shear wave speed at a particular depth using the time-to-peak
+% algorithm.
+
 nln = 10;
 
 eval(sprintf('load /pisgah/nl91/scratch/data/E3.0kPa/foc70mm/B_%.1f/a_%.3f/F3.5/EXCDUR_300us/res_sim.mat', beta, alpha));
