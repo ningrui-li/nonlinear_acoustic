@@ -1,10 +1,16 @@
-function [sws] = calc_sws(alpha, beta, depth)
+function [sws] = calc_sws(alpha, beta, depth, printPlot)
 %% calc_sws.m
 % Estimates shear wave speed at a particular depth using the time-to-peak
 % algorithm.
+% printPlot is a optional boolean input that determines whether or not the
+% SWS estimation plots should be saved as .png files. (default = false)
 
 nln = 10;
 
+if nargin < 4 
+    printPlot = 0;
+end
+    
 eval(sprintf('load /pisgah/nl91/scratch/data/E3.0kPa/foc70mm/B_%.1f/a_%.3f/F3.5/EXCDUR_300us/res_sim.mat', beta, alpha));
 
 lat_start = 2;           % lateral position start index for SWS estimation
@@ -37,4 +43,6 @@ lat = lat * 1e-3;
 linear_regression = polyfit(ttp, lat, 1);
 sws = linear_regression(1);
 
-eval(sprintf('print -dpng sws_ttp_a%.3f_B%.1f_depth%.1f.png', alpha, beta, axial(depth)))
+if printPlot
+    eval(sprintf('print -dpng sws_ttp_a%.3f_B%.1f_depth%.1f.png', alpha, beta, axial(depth)))
+end
