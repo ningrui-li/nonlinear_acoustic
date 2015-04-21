@@ -32,3 +32,5 @@ lat = lat * 1e-3;
            
 linear_regression = polyfit(ttp, lat, 1);
 sws = linear_regression(1);
+
+eval(sprintf('print -dpng sws_ttp_a%.3f_B%.1f_depth%.1f.png', alpha, beta, axial(depth)))

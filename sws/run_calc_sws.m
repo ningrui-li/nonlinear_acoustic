@@ -4,14 +4,23 @@
 
 clear; clf;
 close all;
-%a = [0.005 0.3 0.45 1.0 1.5];
-%B = [0 3.5 7];
+addpath /luscinia/nl91/nonlinear_acoustic/sws/
 
-a = 0.005;
-B = 0;
+% change to sws estimation plot folder before running script
+cd sws_ttp_plots
 
+a = [0.005 0.3 0.45 1.0 1.5];
+B = [0 3.5 7];
+
+sws = zeros(length(a), length(B));
+a_count = 1;
+B_count = 1;
 for alpha = a
     for beta = B
-        sws = calc_sws(alpha, beta, 281);
+        sws(a_count, B_count) = calc_sws(alpha, beta, 281);
+        B_count = B_count + 1;
     end
+    a_count = a_count + 1;
 end
+
+cd ..
