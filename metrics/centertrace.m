@@ -75,9 +75,9 @@ end
 semilogy(varargin{2}, .5*ones(size(varargin{2})), 'k:')
 hold off
 
-title(PlotTitle, 'FontSize', 22)
-xlabel('Depth (cm)', 'FontSize', 20)
-ylabel('Normalized Intensity', 'FontSize', 20)
+title(PlotTitle, 'FontSize', 20)
+xlabel('Depth (cm)', 'FontSize', 16)
+ylabel('Normalized Intensity', 'FontSize', 16)
 % Axis settings assume depth values are extremely similar between plotted 
 % intensity data sets. Also assumes intensity values are correctly normalized
 % to be between 0 and 1.
@@ -86,10 +86,11 @@ legendTitles = '';
 for i = 1:intensityPlotCount
     legendTitles = [legendTitles '''' varargin{3*(i-1)+3}  ''', '];
 end
-eval(sprintf('h = legend(%s 0)', legendTitles))
+eval(sprintf('h = legend(%s ''location'', ''northwest'');', legendTitles))
 set(h, 'interpreter', 'latex');
-set(h, 'FontSize', 12);
-eval(sprintf('print -dpng %s', OutputName'))
+set(h, 'FontSize', 12)
+set(gcf, 'PaperPosition', [0 0 10 8]);
+eval(sprintf('saveas(gcf, ''%s'', ''png'')', OutputName))
 
 
 end
