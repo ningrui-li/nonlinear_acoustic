@@ -11,7 +11,7 @@ load(intensity_file)
 
 %% pre-processing (unit conversion + change to Field II coordinates, etc)
 % re-format intensity file to have dimensions in order of 
-% elevation, depth, lateral positions
+% elevation, lateral, depth positions
 intensity = permute(intensity, [3 2 1]);
 
 % make quarter symmetric (can be commented out if we have quarter symmetric
