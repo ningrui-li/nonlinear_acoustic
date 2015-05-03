@@ -13,17 +13,19 @@ import os
 FEMGIT = '/home/mlp6/git/fem'
 
 # all units are CGS
-focalDepths = [7.0]
+# focalDepths, latCM, and axialCM are parallel arrays.
+# Each index corresponds to a set of lateral and axial extents for a specific focal depth.
+focalDepths = [3.0 7.0]
 latEleNodeSpacing = 0.020
 depthNodeSpacing = 0.025
 elevCM = 0.6
-latCM = 2.0
-axialCM = 9.0
+latCM = [1.2 2.0]
+axialCM = [5.2 9.0]
 
-for fd in focalDepths:
+for i in range(0, len(focalDepths)):
 
-    nodefile = 'nodesFoc%.fmm.dyn' % (fd*10)
-    elemfile = 'elemsFoc%.fmm.dyn' % (fd*10)
+    nodefile = 'nodesFoc%.fmm.dyn' % (fd[i]*10)
+    elemfile = 'elemsFoc%.fmm.dyn' % (fd[i]*10)
 
     os.system('python %s/mesh/GenMesh.py '
               '--nodefile %s '
@@ -31,8 +33,8 @@ for fd in focalDepths:
               '--xyz -%.1f 0.0 0.0 %.1f -%.1f 0.0 '
               '--numElem %i %i %i' %
               (FEMGIT, nodefile, elemfile,
-               elevCM, latCM, axialCM,
-               round(elevCM/latEleNodeSpacing), round(latCM/latEleNodeSpacing), round(axialCM/depthNodeSpacing)
+               elevCM, latCM[i], axialCM[i],
+               round(elevCM/latEleNodeSpacing), round(latCM[i]/latEleNodeSpacing), round(axialCM[i]/depthNodeSpacing)
                )
               )
 
