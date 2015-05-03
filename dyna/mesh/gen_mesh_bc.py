@@ -14,10 +14,11 @@ FEMGIT = '/home/mlp6/git/fem'
 
 # all units are CGS
 focalDepths = [7.0]
-nodeSpacing = 0.025
+latEleNodeSpacing = 0.020
+depthNodeSpacing = 0.025
 elevCM = 0.6
-latCM = 2.5
-axialCM = 12.0
+latCM = 2.0
+axialCM = 9.0
 
 for fd in focalDepths:
 
@@ -31,7 +32,7 @@ for fd in focalDepths:
               '--numElem %i %i %i' %
               (FEMGIT, nodefile, elemfile,
                elevCM, latCM, axialCM,
-               round(elevCM/nodeSpacing), round(latCM/nodeSpacing), round(axialCM/nodeSpacing)
+               round(elevCM/latEleNodeSpacing), round(latCM/latEleNodeSpacing), round(axialCM/depthNodeSpacing)
                )
               )
 
